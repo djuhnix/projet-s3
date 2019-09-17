@@ -8,5 +8,5 @@ student{
 	presentation des stages ( inscription et desinscription )
 }
 prof{
-
+	espace perso
 }
