@@ -1,0 +1,31 @@
+body{
+	background-color: lightgrey;
+	color: black;
+	font-size: medium;
+	text-align: justify;
+	text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.125);
+	padding-right: 0;
+	padding-left: 0;
+	margin-left: 20px;
+
+}
+#header{
+	font-size: large;
+	text-align: center;
+
+}
+h1{
+	color: aliceblue;
+	text-align: left;
+
+}
+
+h1:hover{
+	background: lightgrey;
+
+}
+h3{
+	font-size: 14px;
+	font-weight: normal;
+
+}
