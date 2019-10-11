@@ -1171,4 +1171,13 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
   width: 70%;
   align-items: center;
 }
+@media (max-width: 1024px) {
+  .wrap{
+    display:flex;
+    flex-wrap:wrap;
+    min-height: 50%;
+  }
+
+}
+
 /*# sourceMappingURL=style.css.map */
