@@ -24,16 +24,16 @@
     <div class="d-flex flex-row-reverse">
         <div class="p-2 row-xs-12 col-lg-3  ">
             <h3 class="font-size-24">Connexion</h3>
-            <form class="w-p100" action="https://cours.univ-reims.fr/login/index.php" method="post" id="login">
+            <form class="w-p100 form-align center-block" action="https://cours.univ-reims.fr/login/index.php" method="post" id="login">
                 <input id="anchor" type="hidden" name="anchor" value="">
                 <script>document.getElementById('anchor').value = location.hash;</script>
-                <div class="form-group">
+                <div class="form-group input-lg input-form ">
                     <label for="username" class="sr-only">
                         Nom d'utilisateur
                     </label>
                     <input type="text" class="form-control" id="username" name="username" placeholder="Nom d'utilisateur">
                 </div>
-                <div class="form-group">
+                <div class="form-group input-lg input-form">
                     <label for="password" class="sr-only">Mot de passe</label>
                     <input type="password" name="password" id="password" value="" class="form-control"placeholder="Mot de passe">
                 </div>
@@ -47,7 +47,7 @@
                     </div>
                     <a class="float-right" href="https://cours.univ-reims.fr/login/forgot_password.php">Mot de passe oublié ?</a>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block" id="loginbtn">Connexion</button>
+                <button type="submit" class="btn btn-primary input-form" id="loginbtn">Connexion</button>
             </form> 
             <footer class="page-copyright">
             </footer>
