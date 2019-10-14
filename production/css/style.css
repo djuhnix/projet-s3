@@ -251,8 +251,8 @@ figure figcaption {
 }
 
 #fh5co-main {
-  width: 80%;
-  float: right;
+  width: 60%;
+  padding-left: 100%;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
@@ -1164,11 +1164,8 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
   opacity: 0;
 }
 
-.carousel{
-  margin-left: auto;
-}
 .input-form{
-  width: 70%;
+  width: 65%;
   align-items: center;
 }
 @media (max-width: 768px) {
