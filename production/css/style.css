@@ -1,7 +1,4 @@
 @font-face {
-  font-family: 'icomoon';
-  src: url("../fonts/icomoon/icomoon.eot?srf3rx");
-  src: url("../fonts/icomoon/icomoon.eot?srf3rx#iefix") format("embedded-opentype"), url("../fonts/icomoon/icomoon.ttf?srf3rx") format("truetype"), url("../fonts/icomoon/icomoon.woff?srf3rx") format("woff"), url("../fonts/icomoon/icomoon.svg?srf3rx#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -957,10 +954,7 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
   opacity: 0;
 }
 
-.input-form{
-  width: 65%;
-  align-items: center;
-}
+
 @media (max-width: 768px) {
   .wrap{
     display:flex;
@@ -975,4 +969,8 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
   margin-right: auto;
   text-align: center;
 }
-/*# sourceMappingURL=style.css.map */
+
+.input-form{
+  width: 65%;
+  align-items: center;
+}
