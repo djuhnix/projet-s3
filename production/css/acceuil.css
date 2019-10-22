@@ -1,0 +1,27 @@
+.navbar {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.topbar{
+  background-color: #212529;
+  padding: 0;
+  height: 32px;
+}
+
+
+.bg-dark {
+    background-color: #222!important;
+}
+
+.mx-background-top-linear {
+    background: linear-gradient(150deg, #003b71 48%, #1b1e21 48%);
+}
+@media
