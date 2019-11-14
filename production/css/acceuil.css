@@ -1,3 +1,7 @@
+body{
+    background-color: #8c8c8c;
+}
+
 .navbar {
     display: -ms-flexbox;
     display: flex;
@@ -17,9 +21,19 @@
 
 
 .bg-dark {
-    background-color: #222!important;
+    background-color: #222;
 }
 
 .mx-background-top-linear {
     background: linear-gradient(150deg, #003b71 48%, #1b1e21 48%);
+}
+#main-box{
+    padding-top: 2%;
+    background-color: #777777;
+    margin-right: 2em;
+    margin-left: 2em;
+    display: flex;
+    min-height: 90vh;
+    color: gainsboro;
+
 }
