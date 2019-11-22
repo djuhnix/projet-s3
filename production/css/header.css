@@ -29,16 +29,21 @@ body{
 }
 #main-box{
     padding-top: 2%;
-    background-color: #777777;
+    background-color: #949191;
     margin-right: 2em;
     margin-left: 2em;
     display: flex;
     min-height: 90vh;
     color: gainsboro;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
 
 }
 header > img{
     height: auto;
     max-width: 10%;
     padding-left: 2%;
+}
+div > h2 {
+    color: #003b71;
+
 }
