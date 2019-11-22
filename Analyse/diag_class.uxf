@@ -28,8 +28,8 @@ fontsize=12
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>288</x>
-      <y>16</y>
+      <x>272</x>
+      <y>88</y>
       <w>160</w>
       <h>152</h>
     </coordinates>
@@ -49,10 +49,10 @@ fontsize=12
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>200</x>
-      <y>248</y>
-      <w>160</w>
-      <h>136</h>
+      <x>184</x>
+      <y>320</y>
+      <w>168</w>
+      <h>152</h>
     </coordinates>
     <panel_attributes>Etudiant
 --
@@ -62,6 +62,7 @@ fontsize=12
 - stage : Stage = null
 - candidature : Candidature[]
 --
++ createFromId(string id) : Etudiant
 + getAllNote() : Note[]
 + getNote(string id_module,string type) : int
 + setNote(string id_module) : void
@@ -71,14 +72,14 @@ _+ getAllStudent() : Etudiant[]_</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>40</x>
-      <y>248</y>
+      <x>24</x>
+      <y>320</y>
       <w>136</w>
       <h>112</h>
     </coordinates>
     <panel_attributes>Note
 --
-- module : Module
+- id_module : string
 - noteTPS : float
 - noteCC : float
 --
@@ -90,8 +91,8 @@ _+ getAllStudent() : Etudiant[]_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>256</x>
-      <y>160</y>
+      <x>240</x>
+      <y>232</y>
       <w>104</w>
       <h>104</h>
     </coordinates>
@@ -101,8 +102,8 @@ _+ getAllStudent() : Etudiant[]_</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>384</x>
-      <y>248</y>
+      <x>368</x>
+      <y>320</y>
       <w>176</w>
       <h>152</h>
     </coordinates>
@@ -120,8 +121,8 @@ _+ getAllStudent() : Etudiant[]_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>336</x>
-      <y>160</y>
+      <x>320</x>
+      <y>232</y>
       <w>136</w>
       <h>104</h>
     </coordinates>
@@ -131,8 +132,8 @@ _+ getAllStudent() : Etudiant[]_</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>808</x>
-      <y>0</y>
+      <x>792</x>
+      <y>72</y>
       <w>200</w>
       <h>168</h>
     </coordinates>
@@ -155,30 +156,29 @@ _+ supprimerModule(string id) : void_</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>848</x>
-      <y>424</y>
+      <x>832</x>
+      <y>496</y>
       <w>168</w>
-      <h>120</h>
+      <h>144</h>
     </coordinates>
     <panel_attributes>Candidature
 --
 - id_candidature : int
 - description : string
-- typeCandidature : string
 - acceptee : bool
 --
 + get()
 + getAcceptedStudent() : Etudiant
 + isAccepted() : bool
 + setAcceptee(bool acceptee)
-</panel_attributes>
+_+ getAllCandidature() : Candidature[]_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>936</x>
-      <y>248</y>
+      <x>920</x>
+      <y>320</y>
       <w>168</w>
       <h>120</h>
     </coordinates>
@@ -188,14 +188,15 @@ _+ supprimerModule(string id) : void_</panel_attributes>
 
 --
 _+ ajouterStage(string id, Date dateDeb, Date dateFin, Candidature cand) : void_
-_+ supprimerStage(string id)_</panel_attributes>
+_+ supprimerStage(string id)_
+_+ getAllStage() : Stage[]_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>736</x>
-      <y>248</y>
+      <x>720</x>
+      <y>320</y>
       <w>168</w>
       <h>120</h>
     </coordinates>
@@ -205,14 +206,15 @@ _+ supprimerStage(string id)_</panel_attributes>
 
 --
 _+ ajouterProjet(string id, Date dateDeb, Date dateFin, Candidature cand) : void_
-_+ supprimerProjet(string id)_</panel_attributes>
+_+ supprimerProjet(string id)_
+_+ getAllProjet() : Projet[]_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>784</x>
-      <y>160</y>
+      <x>768</x>
+      <y>232</y>
       <w>96</w>
       <h>104</h>
     </coordinates>
@@ -222,8 +224,8 @@ _+ supprimerProjet(string id)_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>856</x>
-      <y>160</y>
+      <x>840</x>
+      <y>232</y>
       <w>168</w>
       <h>104</h>
     </coordinates>
@@ -233,8 +235,8 @@ _+ supprimerProjet(string id)_</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>136</x>
-      <y>496</y>
+      <x>120</x>
+      <y>568</y>
       <w>192</w>
       <h>88</h>
     </coordinates>
@@ -251,8 +253,8 @@ bg=black</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>488</x>
-      <y>56</y>
+      <x>472</x>
+      <y>128</y>
       <w>120</w>
       <h>96</h>
     </coordinates>
@@ -271,8 +273,8 @@ bg=black</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>584</x>
-      <y>248</y>
+      <x>568</x>
+      <y>320</y>
       <w>120</w>
       <h>152</h>
     </coordinates>
@@ -289,8 +291,8 @@ bg=black</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>336</x>
-      <y>160</y>
+      <x>320</x>
+      <y>232</y>
       <w>312</w>
       <h>104</h>
     </coordinates>
@@ -300,8 +302,8 @@ bg=black</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>632</x>
-      <y>56</y>
+      <x>616</x>
+      <y>128</y>
       <w>120</w>
       <h>88</h>
     </coordinates>
@@ -319,8 +321,8 @@ bg=black</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>120</x>
-      <y>48</y>
+      <x>104</x>
+      <y>120</y>
       <w>104</w>
       <h>96</h>
     </coordinates>
@@ -335,12 +337,12 @@ Genre ??
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>432</x>
-      <y>480</y>
-      <w>80</w>
+      <x>416</x>
+      <y>552</y>
+      <w>112</w>
       <h>112</h>
     </coordinates>
-    <panel_attributes>SimpleClass</panel_attributes>
+    <panel_attributes/>
     <additional_attributes/>
   </element>
 </diagram>
