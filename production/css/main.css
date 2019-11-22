@@ -4,3 +4,22 @@
     margin-right: auto;
     text-align: center;
 }
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+    transition: 0.3s;
+    margin-bottom: 5px;
+
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
+}
+
+.container {
+    padding: 2px 16px;
+}
+.desc{
+    border-color: white;
+    border-left-color: rgba(0,0,0,0.5);
+    border-style: solid;
+}
