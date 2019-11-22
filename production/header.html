@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-
+<!--
+Ce header est à integrer dans toutes les pages php en vefifant de bien supprimer le header déja present sur les versions html qui ne sont là que pour le rendu
+-->
 <html  dir="ltr" lang="fr" xml:lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Université de Reims Champagne-Ardenne: fiche perso</title>
     <!-- Theme style  -->
-    <link rel="stylesheet" href="css/acceuil.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -15,8 +17,8 @@
     <body>
     	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     	<div class="fixed-top">
-  			<header class="topbar ml-auto">
-  				<!--<img src="images/logo_urca.png" class="center image">-->
+  			<header class="topbar">
+					<img src="images/logo_urca.png" class="center image">
   			</header>
   			<nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
     			<div class="container">
@@ -37,7 +39,6 @@
           					<li class="nav-item">
             					<a class="nav-link" href="#">Notes</a>
           					</li>
-
          					<li class="nav-item">
             					<a class="nav-link" href="#">Deconnexion</a>
           					</li>
