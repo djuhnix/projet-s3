@@ -8,6 +8,8 @@
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
     transition: 0.3s;
     margin-bottom: 5px;
+    width: 40%;
+    height: 50%;
 
 }
 
@@ -37,4 +39,13 @@
     padding: 1px 15px 3px 2px;
     border-radius: 90px;
     width: 20%;
+}
+@media (max-width: 991px) {
+    .desc{
+        border-top-color: rgba(0,0,0,0.5);
+        border-left-color: white;
+    }
+    .card{
+        width: 70%;
+    }
 }
