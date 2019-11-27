@@ -337,12 +337,40 @@ Genre ??
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>416</x>
-      <y>552</y>
-      <w>112</w>
-      <h>112</h>
+      <x>440</x>
+      <y>568</y>
+      <w>160</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>/Entity/
+--
+- id : string
+--
+/+ createFromId(string id) : self/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>496</x>
+      <y>696</y>
+      <w>160</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>Toutes les classes relier à a BD 
+doivent hériter de cette classe
+bg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>552</x>
+      <y>640</y>
+      <w>24</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes/>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
   </element>
 </diagram>
