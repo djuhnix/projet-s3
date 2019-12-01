@@ -4,10 +4,10 @@
 /*==============================================================*/
 
 
-drop trigger INSERT_PASS_TO_SHA2;
+drop trigger if exists INSERT_PASS_TO_SHA2;
 
-drop trigger UPDATE_PASS_TO_SHA2;
-
+drop trigger if exists UPDATE_PASS_TO_SHA2;
+/*
 alter table ENCADRER
    drop foreign key FK_ENCADRER_ENCADRER_RESPONSA;
 
@@ -55,90 +55,91 @@ alter table STAGE
 
 alter table UTILISATEUR
    drop foreign key FK_UTILISAT_AVOIR_ADRESSE;
+*/
 
 drop table if exists ADRESSE;
 
 drop table if exists CANDIDATURE;
 
-
+/*
 alter table ENCADRER
    drop foreign key FK_ENCADRER_ENCADRER2_STAGE;
 
 alter table ENCADRER
    drop foreign key FK_ENCADRER_ENCADRER_RESPONSA;
-
+*/
 drop table if exists ENCADRER;
 
-
+/*
 alter table ENSEIGNER
    drop foreign key FK_ENSEIGNE_ENSEIGNER_PROFESSE;
 
 alter table ENSEIGNER
    drop foreign key FK_ENSEIGNE_ENSEIGNER_MODULE;
-
+*/
 drop table if exists ENSEIGNER;
 
-
+/*
 alter table ENTREPRISE
    drop foreign key FK_ENTREPRI_TRAVAILLE_RESPONSA;
 
 alter table ENTREPRISE
    drop foreign key FK_ENTREPRI_AVOIR_2_ADRESSE;
-
+*/
 drop table if exists ENTREPRISE;
 
-
+/*
 alter table ETUDIANT
    drop foreign key FK_ETUDIANT_H3_UTILISAT;
-
+*/
 drop table if exists ETUDIANT;
 
-
+/*
 alter table INSCRIRE
    drop foreign key FK_INSCRIRE_INSCRIRE2_ETUDIANT;
 
 alter table INSCRIRE
    drop foreign key FK_INSCRIRE_INSCRIRE_MODULE;
-
+*/
 drop table if exists INSCRIRE;
 
-
+/*
 alter table MODULE
    drop foreign key FK_MODULE_POSSEDER_CANDIDAT;
-
+*/
 drop table if exists MODULE;
 
-
+/*
 alter table PROFESSEUR
    drop foreign key FK_PROFESSE_H1_UTILISAT;
-
+*/
 drop table if exists PROFESSEUR;
 
-
+/*
 alter table PROJET
    drop foreign key FK_PROJET_PROPOSER_ENTREPRI;
 
 alter table PROJET
    drop foreign key FK_PROJET_H4_MODULE;
-
+*/
 drop table if exists PROJET;
 
-
+/*
 alter table RESPONSABLE
    drop foreign key FK_RESPONSA_H2_UTILISAT;
-
+*/
 drop table if exists RESPONSABLE;
 
-
+/*
 alter table STAGE
    drop foreign key FK_STAGE_H5_MODULE;
-
+*/
 drop table if exists STAGE;
 
-
+/*
 alter table UTILISATEUR
    drop foreign key FK_UTILISAT_AVOIR_ADRESSE;
-
+*/
 drop table if exists UTILISATEUR;
 
 /*==============================================================*/
@@ -341,14 +342,14 @@ alter table UTILISATEUR add constraint FK_UTILISAT_AVOIR_ADRESSE foreign key (ID
       references ADRESSE (ID_ADRESSE) on delete restrict on update restrict;
 
 
-create trigger INSERT_PASS_TO_SHA2 before insert
+create or replace trigger INSERT_PASS_TO_SHA2 before insert
 on UTILISATEUR for each row
 begin
     set new.SHA_MDP = sha2(new.SHA_MDP,512);
 end;
 
 
-create trigger UPDATE_PASS_TO_SHA2 before update
+create or replace trigger UPDATE_PASS_TO_SHA2 before update
 on UTILISATEUR for each row
 begin
     set new.SHA_MDP = sha2(new.SHA_MDP,512);
