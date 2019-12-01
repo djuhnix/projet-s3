@@ -32,13 +32,17 @@
 .btn-font {
     padding:8px;
     background:white;
-    margin-right:4px;
     border-radius: 90px;
+
 }
 .icon-btn {
     padding: 1px 15px 3px 2px;
     border-radius: 90px;
     width: 20%;
+}
+.valign{
+    margin-top: 10%;
+    margin-bottom: 10%;
 }
 @media (max-width: 991px) {
     .desc{
@@ -48,4 +52,11 @@
     .card{
         width: 70%;
     }
+    .valign{
+        margin-top: 0px;
+        margin-bottom: 0px;
+        margin-left: 50%;
+        margin-right: 50%;
+    }
 }
+
