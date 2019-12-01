@@ -329,7 +329,7 @@ bg=black</panel_attributes>
     <panel_attributes>&lt;&lt;Enum&gt;&gt;
 Genre ??
 --
-+ AUTRE = 0
++ AUTRE = 3
 + MASCULIN = 1
 + FEMININ = 2</panel_attributes>
     <additional_attributes/>
