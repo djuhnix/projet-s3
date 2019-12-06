@@ -3,11 +3,11 @@
 
 abstract class Travaux
 {
-    private $idTravaux; //int
-    private $title ; //string
+    private $_id; //int
+    private $titre ; //string
     private $description; //string
-    private $startDate; //date
-    private $endDate; //date
+    private $dateDeb; //date
+    private $dateFin; //date
 
     //fonctions
     /**
@@ -21,33 +21,33 @@ abstract class Travaux
     /**
      * @return string
      */
-    public function getTitle(): string
+    public function getTitre(): string
     {
-        return $this->title;
+        return $this->titre;
     }
 
     /**
      * @return int
      */
-    public function getIdTravaux(): int
+    public function getId(): int
     {
-        return $this->idTravaux;
+        return $this->_id;
     }
 
     /**
      * @return string
      */
-    public function getEndDate()
+    public function getDateFin()
     {
-        return $this->endDate;
+        return $this->dateFin;
     }
 
     /**
      * @return string
      */
-    public function getStartDate()
+    public function getDateDeb()
     {
-        return $this->startDate;
+        return $this->dateDeb;
     }
 
     /**
