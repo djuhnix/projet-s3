@@ -1,9 +1,8 @@
 <?php
 
 
-abstract class Travaux
+abstract class Travaux extends Entity
 {
-    private $_id; //int
     private $titre ; //string
     private $description; //string
     private $dateDeb; //date
@@ -24,14 +23,6 @@ abstract class Travaux
     public function getTitre(): string
     {
         return $this->titre;
-    }
-
-    /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->_id;
     }
 
     /**

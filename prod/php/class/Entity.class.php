@@ -12,7 +12,7 @@ abstract class Entity
      *
      * @var string $id
      */
-    protected $id = null;
+    protected $_id = null;
 
     /**
      *  Constructeur non accessible.
