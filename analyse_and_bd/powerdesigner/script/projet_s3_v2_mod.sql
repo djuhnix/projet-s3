@@ -320,7 +320,7 @@ create table UTILISATEUR
    DATENAIS             date  comment '',
    MAIL                 varchar(100)  comment '',
    LOGIN                varchar(25) not null  comment '',
-   MDP                  varchar(25) not null  comment '',
+   SHA_MDP                  varchar(25) not null  comment '',
    primary key (ID_PERS)
 )
 auto_increment = 1;
