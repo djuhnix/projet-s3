@@ -10,7 +10,7 @@ abstract class Entity
     /**
      * Identifiant.
      *
-     * @var string $id
+     * @var string $_id
      */
     protected $_id = null;
 
@@ -28,7 +28,7 @@ abstract class Entity
      */
     public function getId(): int
     {
-        return (int) $this->id;
+        return (int) $this->_id;
     }
 
     /**

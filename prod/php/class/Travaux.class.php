@@ -1,25 +1,17 @@
 <?php
 
-
 abstract class Travaux extends Entity
 {
-    private $titre ; //string
-    private $description; //string
-    private $dateDeb; //date
-    private $dateFin; //date
+    protected $titre; //string
+    /**
+     * @var Proposition[] | NULL
+     */
+    protected $proposition;
+    protected $dateDeb; //date
+    protected $dateFin; //date
 
     //fonctions
-    /**
-     * @return string
-     */
-    public function getDescription(): string
-{
-    return $this->description;
-}
 
-    /**
-     * @return string
-     */
     public function getTitre(): string
     {
         return $this->titre;
@@ -42,14 +34,34 @@ abstract class Travaux extends Entity
     }
 
     /**
-     * @param mixed $description
+     * @param mixed $proposition
      */
-    public function setDescription($description): void
+    public function setProposition($proposition): void
     {
-        $this->description = $description;
+        $this->proposition = $proposition;
     }
 
-    abstract public function ajouter();
+    /**
+     * @return Proposition[]
+     */
+    abstract public function getProposition(): array;
 
-    abstract public function supprimer();
+    /**
+     * @return self[]
+     */
+    abstract public function getAll(): array;
+
+    /**
+     * Ajoute une ligne dans la table de stage | projet avec la proposition associer.
+     *
+     * @param string $id
+     *
+     * @return bool selon la réussite de l'action
+     */
+    abstract public function ajouter(string $dateDeb, string $dateFin, string $description): bool;
+
+    /*
+     * doute sur la nécessité de cette méthode
+     *
+    abstract public function supprimer(string $id) : bool;*/
 }

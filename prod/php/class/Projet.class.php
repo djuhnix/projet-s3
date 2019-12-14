@@ -1,9 +1,9 @@
 <?php
+
 /* En cours */
 
 class Projet extends Travaux
 {
-
     /**
      * Usine pour fabriquer une instance à partir d'un identifiant.
      *
@@ -23,25 +23,37 @@ class Projet extends Travaux
                    DATE_DEB_PROJET as dateDeb,
                    DATE_FIN_PROJET as dateFin
             FROM PROJET
-            WHERE id = ?
+            WHERE ID_PROJET = ?
 SQL
 );
         $stmt->execute([$id]);
-        $stmt->setFetchMode(PDO::FETCH_CLASS, "Projet");
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Projet');
         $object = $stmt->fetch();
-        if ($object === false) throw new Exception("Projet inconnu : " . $id);
+        if (false === $object) {
+            throw new Exception('Projet inconnu : '.$id);
+        }
 
         return $object;
-
-    }
-
-    public function ajouter()
-    {
-        // TODO: Implement ajouter() method.
     }
 
     public function supprimer()
     {
         // TODO: Implement supprimer() method.
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getProposition(): array
+    {
+        // TODO: Implement getProposition() method.
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function ajouter(string $dateDeb, string $dateFin, string $description): bool
+    {
+        // TODO: Implement ajouter() method.
     }
 }
