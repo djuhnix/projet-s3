@@ -58,7 +58,7 @@ SQL
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getAll(): array
     {

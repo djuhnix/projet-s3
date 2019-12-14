@@ -54,8 +54,9 @@ abstract class Travaux extends Entity
     /**
      * Ajoute une ligne dans la table de stage | projet avec la proposition associer.
      *
-     * @param string $id
-     *
+     * @param string $dateDeb
+     * @param string $dateFin
+     * @param string $description
      * @return bool selon la réussite de l'action
      */
     abstract public function ajouter(string $dateDeb, string $dateFin, string $description): bool;
