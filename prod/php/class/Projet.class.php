@@ -56,4 +56,12 @@ SQL
     {
         // TODO: Implement ajouter() method.
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getAll(): array
+    {
+        // TODO: Implement getAll() method.
+    }
 }

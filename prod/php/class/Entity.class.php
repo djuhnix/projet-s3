@@ -10,7 +10,7 @@ abstract class Entity
     /**
      * Identifiant.
      *
-     * @var string $_id
+     * @var string
      */
     protected $_id = null;
 
@@ -43,6 +43,4 @@ abstract class Entity
      * @return self instance correspondant à $id
      */
     abstract public static function createFromId(int $id);
-
 }
-
