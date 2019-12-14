@@ -339,7 +339,6 @@ bg=black</panel_attributes>
     </coordinates>
     <panel_attributes>/Travaux/
 --
-- _id : int
 - titre : string
 - proposition : Proposition
 - dateDeb : Date
