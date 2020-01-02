@@ -63,6 +63,14 @@ $p->appendContent(<<<HTML
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link" href="#">Gerer les Projets</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Gerer les Stages</a>
+                    </li>
+
+                    <li class="nav-item">
                         {$u->logoutForm($log, 'Deconnexion')}
 
                     </li>

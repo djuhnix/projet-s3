@@ -1,7 +1,7 @@
 <?php
 require_once('autoload.include.php') ;
-require_once('MyPDO.template.php') ;
-require_once('MyPDO.class.php') ;
+// require_once('MyPDO.template.php') ;
+// require_once('MyPDO.class.php') ;
 
 class Professeur extends User
 {

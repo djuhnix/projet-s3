@@ -6,7 +6,7 @@ if (!User::isConnected()) {
     die() ;
 }
 
-$u = User::createFromSession() ;
+$u = Etudiant::createFromSession() ;
 
 $log = "http://{$_SERVER['SERVER_NAME']}/".dirname($_SERVER['PHP_SELF'])."/form.php";
 
