@@ -1,36 +1,9 @@
-
-
 <?php
 
-/**
- * Classe abstraite permettant la gestion des attributs communs id et name des tables.
- */
-abstract class Entity
+
+class Responsable extends Entity
 {
-    /**
-     * Identifiant.
-     *
-     * @var string
-     */
-    protected $_id = null;
-
-    /**
-     *  Constructeur non accessible.
-     */
-    private function __construct()
-    {
-    }
-
-    /**
-     * Accesseur sur id.
-     *
-     * @return int Identifiant
-     */
-    public function getId(): int
-    {
-        return (int) $this->_id;
-    }
-
+    //TODO
     /**
      * Usine pour fabriquer une instance à partir d'un identifiant.
      *
@@ -42,19 +15,27 @@ abstract class Entity
      *
      * @return self instance correspondant à $id
      */
-    abstract public static function createFromId(int $id);
+    public static function createFromId(int $id)
+    {
+        // TODO: Implement createFromId() method.
+    }
 
     /**
      * Accesseur à toutes les lignes de la table correspondantes.
      *
      * @return self[]
      */
-    abstract public static function getAll() : array;
+    public static function getAll(): array
+    {
+        // TODO: Implement getAll() method.
+    }
 
     /**
      * Fait persister une instance dans la base de données avec ses attribut.
      * @return bool Selon la réussite de l'action
      */
-    abstract public function persist() : bool;
-
+    public function persist(): bool
+    {
+        // TODO: Implement persist() method.
+    }
 }

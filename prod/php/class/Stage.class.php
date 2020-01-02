@@ -5,14 +5,47 @@
 class Stage extends Travaux
 {
     /**
-     * Private stage constructor.
-     * Pour éviter l'instanciation d'objet stage.
+     * L'entreprise dans la quelle le stage est réalisé
      *
-     * @noinspection PhpMissingParentConstructorInspection
+     * @var Entreprise
      */
-    private function __construct()
+    private $entreprise = null;
+    /**
+     * Le responsable du stage dans l'entreprise
+     *
+     * @var Responsable
+     */
+    private $responsable = null;
+
+    /**
+     * Stage constructor.
+     * @param string $libele
+     * @param DatePeriod $dateDeb
+     * @param DatePeriod $dateFin
+     * @param Proposition $proposition
+     * @param Entreprise $entreprise
+     * @param Professeur|null $professeur
+     * @param Responsable $responsable
+     */
+    public function __construct(
+        string $libele,
+        DatePeriod $dateDeb,
+        DatePeriod $dateFin,
+        Proposition $proposition = null,
+        Entreprise $entreprise = null,
+        Professeur $professeur = null,
+        Responsable $responsable = null
+    )
     {
+        $this->libele = $libele;
+        $this->entreprise = $entreprise;
+        $this->responsable = $responsable;
+        $this->dateDeb = $dateDeb;
+        $this->dateFin = $dateFin;
+        $this->prof = $professeur;
+        $this->proposition = $proposition;
     }
+
 
     /**
      * Usine pour fabriquer une instance à partir d'un identifiant.
@@ -25,7 +58,7 @@ class Stage extends Travaux
      *
      * @return self instance correspondant à $id
      */
-    public static function createFromId(int $id): self
+    public static function createFromId(int $id) : self
     {
         //stage
         $stmtStage = MyPDO::getInstance()->prepare(<<<SQL
@@ -73,44 +106,13 @@ SQL
         return $this->proposition;
     }
 
-    //A vérifier
 
-    /**
-     * @throws Exception
-     */
-    public function ajouter(string $dateDeb, string $dateFin, string $description): bool
-    {
-        $stmt = MyPDO::getInstance()->prepare(<<<SQL
-            INSERT INTO STAGE(`ID_ENTREPRISE`, `RESPONSABLE_ID_PERS`, `LIB_STAGE`, `DATE_DEB_STAGE`, `DATE_FIN_STAGE`, `PROFESSEUR_ID_PERS`) 
-            VALUES (
-                :ID_ENTREPRISE,
-                :RESPONSABLE_ID_PERS,
-                :LIB_STAGE,
-                :DATE_DEB_STAGE,
-                :DATE_FIN_STAGE,
-                :PROFESSEUR_ID_PERS,
-                );
-            
-            INSERT INTO PROPOSITION(`ID_STAGE`, `DESCRIPTION`) 
-            VALUES ([value-1],[value-2],[value-3],[value-4]);
-SQL
-            );
-
-        return $stmt->execute([
-                ':ID_ENTREPRISE', //TODO Si le stage est proposé par une entreprise
-                ':RESPONSABLE_ID_PERS', //TODO Le tuteur du stage dans l'entreprise
-                ':LIB_STAGE', //TODO Libélé du stage
-                ':DATE_DEB_STAGE', //TODO
-                ':DATE_FIN_STAGE', //TODO
-                ':PROFESSEUR_ID_PERS', //TODO si le stage est proposé par un professeur
-            ]);
-    }
 
     /**
      * {@inheritdoc}
      * @throws Exception
      */
-    public function getAll(): array
+    public static function getAll(): array
     {
         $stmt = MyPDO::getInstance()->prepare(<<<SQL
             SELECT *
@@ -121,5 +123,39 @@ SQL
         $stmt->setFetchMode(PDO::FETCH_CLASS, Stage::class);
 
         return $stmt->fetchAll();
+    }
+
+    /**
+     * Fait persister une instance dans la base de données avec ses attribut.
+     * Ajoute une ligne dans la table de stage avec la proposition associer.
+     */
+    public function persist(): bool
+    {
+        $stmt = MyPDO::getInstance()->prepare(<<<SQL
+            INSERT INTO STAGE(`ID_ENTREPRISE`, `RESPONSABLE_ID_PERS`, `LIB_STAGE`, `DATE_DEB_STAGE`, `DATE_FIN_STAGE`, `PROFESSEUR_ID_PERS`) 
+            VALUES (
+                :ID_ENTREPRISE,
+                :RESPONSABLE_ID_PERS,
+                :LIB_STAGE,
+                :DATE_DEB_STAGE,
+                :DATE_FIN_STAGE,
+                :PROFESSEUR_ID_PERS
+                );
+            
+            INSERT INTO PROPOSITION(`ID_STAGE`, `DESCRIPTION`) 
+            VALUES (:ID_STAGE, :DESCRIPTION);
+SQL
+        );
+
+        return $stmt->execute([
+            ':ID_ENTREPRISE' => $this->entreprise->getId(),
+            ':RESPONSABLE_ID_PERS' => $this->responsable->getId(),
+            ':LIB_STAGE' => $this->libele,
+            ':DATE_DEB_STAGE' => $this->dateDeb,
+            ':DATE_FIN_STAGE' => $this->dateFin,
+            ':PROFESSEUR_ID_PERS' => $this->prof->getId(),
+            ':ID_STAGE' => $this->_id,
+            ':DESCRIPTION' => $this->proposition->getDescription(),
+        ]);
     }
 }

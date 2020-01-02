@@ -10,5 +10,14 @@ class Proposition
      * @var string
      */
     private $description;
-    //TODO
+
+    /**
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+
 }
