@@ -2,19 +2,39 @@
 
 abstract class Travaux extends Entity
 {
-    protected $titre; //string
+    /**
+     * @var string
+     */
+    protected $libele; //string
     /**
      * @var Proposition[] | NULL
      */
-    protected $proposition;
+    protected $proposition = null;
+    /**
+     * @var DatePeriod
+     */
     protected $dateDeb; //date
+    /**
+     * @var DatePeriod
+     */
     protected $dateFin; //date
 
-    //fonctions
-
-    public function getTitre(): string
+    /**
+     * @var Professeur | null
+     */
+    protected $prof = null;
+    /**
+     *  Constructeur non accessible.
+     * @noinspection PhpMissingParentConstructorInspection
+     *
+     */
+    private function __construct()
     {
-        return $this->titre;
+    }
+
+    public function getLibele(): string
+    {
+        return $this->libele;
     }
 
     /**
@@ -49,17 +69,9 @@ abstract class Travaux extends Entity
     /**
      * @return self[]
      */
-    abstract public function getAll(): array;
+    abstract static public function getAll(): array;
 
-    /**
-     * Ajoute une ligne dans la table de stage | projet avec la proposition associer.
-     *
-     * @param string $dateDeb
-     * @param string $dateFin
-     * @param string $description
-     * @return bool selon la réussite de l'action
-     */
-    abstract public function ajouter(string $dateDeb, string $dateFin, string $description): bool;
+
 
     /*
      * doute sur la nécessité de cette méthode
