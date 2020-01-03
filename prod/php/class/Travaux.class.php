@@ -42,7 +42,7 @@ abstract class Travaux extends Entity
      */
     public function getIdProfesseur(): int
     {
-        return $this->idProfesseur;
+        return (int) $this->idProfesseur;
     }
 
     /**

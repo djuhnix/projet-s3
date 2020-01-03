@@ -50,9 +50,9 @@ class Stage extends Travaux
         $this->dateDeb = $dateDeb;
         $this->dateFin = $dateFin;
         $this->professeur = $professeur;
-        $this->idProfesseur = $professeur->getId();
-        $this->idEntreprise = $entreprise->getId();
-        $this->idResponsable = $responsable->getId();
+        $this->idProfesseur = (int) $professeur->getId();
+        $this->idEntreprise = (int) $entreprise->getId();
+        $this->idResponsable = (int) $responsable->getId();
     }
 
 
@@ -90,6 +90,22 @@ SQL
         }
 
         return $stage;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdEntreprise(): int
+    {
+        return (int)  $this->idEntreprise;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdResponsable(): int
+    {
+        return (int) $this->idResponsable;
     }
 
     /**

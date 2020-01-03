@@ -44,8 +44,8 @@ class Proposition extends Entity
         $this->description = $description;
         $this->stage = $stage;
         $this->projet = $projet;
-        $this->idProjet = $projet->getId();
-        $this->idStage = $stage->getId();
+        $this->idProjet = (int) $projet->getId();
+        $this->idStage = (int) $stage->getId();
         $this->acceptee = $acceptee;
     }
 
@@ -61,7 +61,7 @@ class Proposition extends Entity
             FROM PROPOSITION
             WHERE ID_PROPOSITION = ?
 SQL
-        );
+    );
         $stmt->setFetchMode(PDO::FETCH_CLASS, Proposition::class);
         $stmt->execute([$id]);
         $object = $stmt->fetch();
@@ -76,7 +76,7 @@ SQL
      */
     public function getIdStage(): int
     {
-        return $this->idStage;
+        return (int) $this->idStage;
     }
 
     /**
@@ -84,7 +84,7 @@ SQL
      */
     public function getIdProjet(): int
     {
-        return $this->idProjet;
+        return (int) $this->idProjet;
     }
 
     /**
@@ -145,16 +145,14 @@ SQL
             WHERE id_stage = ?
 SQL
         );
-        $stmt->execute([$id]);
         $stmt->setFetchMode(PDO::FETCH_CLASS, Proposition::class);
+        $stmt->execute([$id]);
         $object = $stmt->fetchAll();
         if (false === $object) {
             throw new Exception('Aucunne Proposition de stage avec l\'identifiant de stage : '.$id);
         }
 
         return $object;
-
-
     }
 
     /**
