@@ -165,7 +165,15 @@ SQL
      */
     public static function getAll(): array
     {
-        // TODO: Implement getAll() method.
+        $stmt = MyPDO::getInstance()->prepare(
+            <<<SQL
+            SELECT *
+            FROM adresse
+SQL
+        );
+        $stmt->setFetchMode(PDO::FETCH_CLASS, Adresse::class);
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 
     /**
@@ -173,6 +181,23 @@ SQL
      */
     public function persist(): bool
     {
-        // TODO: Implement persist() method.
+        $stmt = MyPDO::getInstance()->prepare(
+            <<<SQL
+            INSERT INTO adresse (id_entreprise, rue, code_postal, ville) 
+            VALUES (
+                    :id_entreprise,
+                    :rue,
+                    :code_postal,
+                    :ville
+            )
+SQL
+        );
+        return $stmt->execute([
+            ':id_entreprise' => $this->idEntreprise,
+            ':rue' => $this->rue,
+            ':code_postal' => $this->codePostal,
+            ':ville' => $this->ville,
+        ]);
+
     }
 }
