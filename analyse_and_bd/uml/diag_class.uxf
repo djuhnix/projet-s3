@@ -29,7 +29,7 @@ fontsize=12
     <id>UMLClass</id>
     <coordinates>
       <x>368</x>
-      <y>384</y>
+      <y>376</y>
       <w>160</w>
       <h>152</h>
     </coordinates>
@@ -50,7 +50,7 @@ fontsize=12
     <id>UMLClass</id>
     <coordinates>
       <x>104</x>
-      <y>616</y>
+      <y>608</y>
       <w>168</w>
       <h>152</h>
     </coordinates>
@@ -73,7 +73,7 @@ _+ getAllStudent() : Etudiant[]_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>136</x>
-      <y>304</y>
+      <y>296</y>
       <w>136</w>
       <h>112</h>
     </coordinates>
@@ -93,7 +93,7 @@ _+ getAll() : Note[]_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>160</x>
-      <y>528</y>
+      <y>520</y>
       <w>280</w>
       <h>104</h>
     </coordinates>
@@ -104,7 +104,7 @@ _+ getAll() : Note[]_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>352</x>
-      <y>608</y>
+      <y>600</y>
       <w>176</w>
       <h>152</h>
     </coordinates>
@@ -123,7 +123,7 @@ _+ getAll() : Note[]_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>416</x>
-      <y>528</y>
+      <y>520</y>
       <w>24</w>
       <h>96</h>
     </coordinates>
@@ -134,7 +134,7 @@ _+ getAll() : Note[]_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>120</x>
-      <y>8</y>
+      <y>0</y>
       <w>272</w>
       <h>168</h>
     </coordinates>
@@ -156,7 +156,7 @@ _+ supprimerModule(string id) : void_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1232</x>
-      <y>376</y>
+      <y>368</y>
       <w>216</w>
       <h>144</h>
     </coordinates>
@@ -177,7 +177,7 @@ _+ getAllCandidature() : Candidature[]_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1304</x>
-      <y>616</y>
+      <y>608</y>
       <w>376</w>
       <h>120</h>
     </coordinates>
@@ -196,7 +196,7 @@ _+ getAll() : Stage[]_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>768</x>
-      <y>616</y>
+      <y>608</y>
       <w>400</w>
       <h>120</h>
     </coordinates>
@@ -214,7 +214,7 @@ _+ getAllt() : Projet[]_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>552</x>
-      <y>384</y>
+      <y>376</y>
       <w>136</w>
       <h>112</h>
     </coordinates>
@@ -234,7 +234,7 @@ _+ getAllt() : Projet[]_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>592</x>
-      <y>616</y>
+      <y>608</y>
       <w>120</w>
       <h>144</h>
     </coordinates>
@@ -252,7 +252,7 @@ _+ getAllt() : Projet[]_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>416</x>
-      <y>528</y>
+      <y>520</y>
       <w>240</w>
       <h>104</h>
     </coordinates>
@@ -263,7 +263,7 @@ _+ getAllt() : Projet[]_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>712</x>
-      <y>384</y>
+      <y>376</y>
       <w>120</w>
       <h>112</h>
     </coordinates>
@@ -282,7 +282,7 @@ _+ getAllt() : Projet[]_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>520</x>
-      <y>184</y>
+      <y>176</y>
       <w>160</w>
       <h>88</h>
     </coordinates>
@@ -300,12 +300,16 @@ _+ getAllt() : Projet[]_</panel_attributes>
     <id>UMLNote</id>
     <coordinates>
       <x>808</x>
-      <y>216</y>
-      <w>160</w>
-      <h>56</h>
+      <y>192</y>
+      <w>240</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>Toutes les classes relier à a BD 
 doivent hériter de cette classe
+
+Autres méthodes static à implémenté :
+- getFromForeignID (pour chaque FK)
+   ex: getFromPropositionID
 bg=black</panel_attributes>
     <additional_attributes/>
   </element>
@@ -313,7 +317,7 @@ bg=black</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>816</x>
-      <y>512</y>
+      <y>504</y>
       <w>144</w>
       <h>120</h>
     </coordinates>
@@ -324,7 +328,7 @@ bg=black</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>936</x>
-      <y>512</y>
+      <y>504</y>
       <w>608</w>
       <h>120</h>
     </coordinates>
@@ -335,7 +339,7 @@ bg=black</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>864</x>
-      <y>376</y>
+      <y>368</y>
       <w>360</w>
       <h>144</h>
     </coordinates>
@@ -357,7 +361,7 @@ _/+ getAll() : Travaux[]/_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>440</x>
-      <y>264</y>
+      <y>256</y>
       <w>176</w>
       <h>136</h>
     </coordinates>
@@ -368,7 +372,7 @@ _/+ getAll() : Travaux[]/_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>592</x>
-      <y>264</y>
+      <y>256</y>
       <w>24</w>
       <h>136</h>
     </coordinates>
@@ -379,7 +383,7 @@ _/+ getAll() : Travaux[]/_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>592</x>
-      <y>264</y>
+      <y>256</y>
       <w>192</w>
       <h>136</h>
     </coordinates>
@@ -390,7 +394,7 @@ _/+ getAll() : Travaux[]/_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>592</x>
-      <y>264</y>
+      <y>256</y>
       <w>352</w>
       <h>128</h>
     </coordinates>
@@ -401,7 +405,7 @@ _/+ getAll() : Travaux[]/_</panel_attributes>
     <id>UMLNote</id>
     <coordinates>
       <x>0</x>
-      <y>336</y>
+      <y>328</y>
       <w>80</w>
       <h>40</h>
     </coordinates>
@@ -413,7 +417,7 @@ bg=black</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>672</x>
-      <y>232</y>
+      <y>224</y>
       <w>152</w>
       <h>24</h>
     </coordinates>
@@ -424,7 +428,7 @@ bg=black</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>72</x>
-      <y>344</y>
+      <y>336</y>
       <w>80</w>
       <h>24</h>
     </coordinates>
@@ -435,7 +439,7 @@ bg=black</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>384</x>
-      <y>96</y>
+      <y>88</y>
       <w>224</w>
       <h>104</h>
     </coordinates>
@@ -446,7 +450,7 @@ bg=black</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>264</x>
-      <y>264</y>
+      <y>256</y>
       <w>352</w>
       <h>96</h>
     </coordinates>
@@ -457,7 +461,7 @@ bg=black</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>592</x>
-      <y>264</y>
+      <y>256</y>
       <w>728</w>
       <h>128</h>
     </coordinates>

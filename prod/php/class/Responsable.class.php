@@ -3,7 +3,7 @@
 
 class Responsable extends Entity
 {
-    //TODO
+
     /**
      * Usine pour fabriquer une instance à partir d'un identifiant.
      *
