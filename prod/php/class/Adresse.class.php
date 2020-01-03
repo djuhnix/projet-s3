@@ -23,6 +23,10 @@ class Adresse extends Entity
      * @var Entreprise|null
      */
     private $entreprise;
+    /**
+     * @var User $utilisateur
+     */
+    private $utilisateur;
 
     /**
      * Adresse constructor.
@@ -150,6 +154,15 @@ SQL
             $this->entreprise = Entreprise::createFromId($this->idEntreprise);
         }
         return $this->entreprise;
+    }
+
+    public function getUser()
+    {
+        if ($this->utilisateur === null)
+        {
+            $this->utilisateur = User::getFromAdresseId($this->_id);
+        }
+        return $this->utilisateur;
     }
 
     /**
