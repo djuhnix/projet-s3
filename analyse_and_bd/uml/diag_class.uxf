@@ -29,7 +29,7 @@ fontsize=12
     <id>UMLClass</id>
     <coordinates>
       <x>368</x>
-      <y>376</y>
+      <y>384</y>
       <w>160</w>
       <h>152</h>
     </coordinates>
@@ -50,7 +50,7 @@ fontsize=12
     <id>UMLClass</id>
     <coordinates>
       <x>104</x>
-      <y>608</y>
+      <y>616</y>
       <w>168</w>
       <h>152</h>
     </coordinates>
@@ -73,7 +73,7 @@ _+ getAllStudent() : Etudiant[]_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>136</x>
-      <y>296</y>
+      <y>304</y>
       <w>136</w>
       <h>112</h>
     </coordinates>
@@ -93,7 +93,7 @@ _+ getAll() : Note[]_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>160</x>
-      <y>520</y>
+      <y>528</y>
       <w>280</w>
       <h>104</h>
     </coordinates>
@@ -104,7 +104,7 @@ _+ getAll() : Note[]_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>352</x>
-      <y>600</y>
+      <y>608</y>
       <w>176</w>
       <h>152</h>
     </coordinates>
@@ -123,7 +123,7 @@ _+ getAll() : Note[]_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>416</x>
-      <y>520</y>
+      <y>528</y>
       <w>24</w>
       <h>96</h>
     </coordinates>
@@ -134,7 +134,7 @@ _+ getAll() : Note[]_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>120</x>
-      <y>0</y>
+      <y>8</y>
       <w>272</w>
       <h>168</h>
     </coordinates>
@@ -142,10 +142,8 @@ _+ getAll() : Note[]_</panel_attributes>
 --
 - id_module : string
 - libele : string
-- description : string
-- dateDebut : Date
-- dateFin : Date
-- coefficient : float
+- code : string
+- nature : string
 --
 + get()
 + setDateDebut(Date dateDeb) : void
@@ -158,7 +156,7 @@ _+ supprimerModule(string id) : void_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1232</x>
-      <y>368</y>
+      <y>376</y>
       <w>216</w>
       <h>144</h>
     </coordinates>
@@ -179,7 +177,7 @@ _+ getAllCandidature() : Candidature[]_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1304</x>
-      <y>608</y>
+      <y>616</y>
       <w>376</w>
       <h>120</h>
     </coordinates>
@@ -198,7 +196,7 @@ _+ getAll() : Stage[]_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>768</x>
-      <y>608</y>
+      <y>616</y>
       <w>400</w>
       <h>120</h>
     </coordinates>
@@ -216,7 +214,7 @@ _+ getAllt() : Projet[]_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>552</x>
-      <y>376</y>
+      <y>384</y>
       <w>136</w>
       <h>112</h>
     </coordinates>
@@ -236,7 +234,7 @@ _+ getAllt() : Projet[]_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>592</x>
-      <y>608</y>
+      <y>616</y>
       <w>120</w>
       <h>144</h>
     </coordinates>
@@ -254,7 +252,7 @@ _+ getAllt() : Projet[]_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>416</x>
-      <y>520</y>
+      <y>528</y>
       <w>240</w>
       <h>104</h>
     </coordinates>
@@ -265,7 +263,7 @@ _+ getAllt() : Projet[]_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>712</x>
-      <y>376</y>
+      <y>384</y>
       <w>120</w>
       <h>112</h>
     </coordinates>
@@ -284,9 +282,9 @@ _+ getAllt() : Projet[]_</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>520</x>
-      <y>176</y>
+      <y>184</y>
       <w>160</w>
-      <h>80</h>
+      <h>88</h>
     </coordinates>
     <panel_attributes>/Entity/
 --
@@ -302,7 +300,7 @@ _+ getAllt() : Projet[]_</panel_attributes>
     <id>UMLNote</id>
     <coordinates>
       <x>808</x>
-      <y>208</y>
+      <y>216</y>
       <w>160</w>
       <h>56</h>
     </coordinates>
@@ -315,7 +313,7 @@ bg=black</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>816</x>
-      <y>504</y>
+      <y>512</y>
       <w>144</w>
       <h>120</h>
     </coordinates>
@@ -326,7 +324,7 @@ bg=black</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>936</x>
-      <y>504</y>
+      <y>512</y>
       <w>608</w>
       <h>120</h>
     </coordinates>
@@ -337,7 +335,7 @@ bg=black</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>864</x>
-      <y>368</y>
+      <y>376</y>
       <w>360</w>
       <h>144</h>
     </coordinates>
@@ -359,51 +357,51 @@ _/+ getAll() : Travaux[]/_</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>440</x>
-      <y>248</y>
+      <y>264</y>
       <w>176</w>
-      <h>144</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>200.0;10.0;200.0;110.0;10.0;110.0;10.0;160.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>592</x>
-      <y>248</y>
-      <w>24</w>
-      <h>144</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;160.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>592</x>
-      <y>248</y>
-      <w>192</w>
-      <h>144</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;110.0;220.0;110.0;220.0;160.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>592</x>
-      <y>248</y>
-      <w>352</w>
       <h>136</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;110.0;420.0;110.0;420.0;150.0</additional_attributes>
+    <additional_attributes>200.0;10.0;200.0;100.0;10.0;100.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>592</x>
+      <y>264</y>
+      <w>24</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>592</x>
+      <y>264</y>
+      <w>192</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0;220.0;100.0;220.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>592</x>
+      <y>264</y>
+      <w>352</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0;420.0;100.0;420.0;140.0</additional_attributes>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
       <x>0</x>
-      <y>328</y>
+      <y>336</y>
       <w>80</w>
       <h>40</h>
     </coordinates>
@@ -415,7 +413,7 @@ bg=black</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>672</x>
-      <y>224</y>
+      <y>232</y>
       <w>152</w>
       <h>24</h>
     </coordinates>
@@ -426,7 +424,7 @@ bg=black</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>72</x>
-      <y>336</y>
+      <y>344</y>
       <w>80</w>
       <h>24</h>
     </coordinates>
@@ -437,7 +435,7 @@ bg=black</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>384</x>
-      <y>88</y>
+      <y>96</y>
       <w>224</w>
       <h>104</h>
     </coordinates>
@@ -448,22 +446,22 @@ bg=black</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>264</x>
-      <y>248</y>
+      <y>264</y>
       <w>352</w>
-      <h>104</h>
+      <h>96</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>420.0;10.0;420.0;110.0;10.0;110.0</additional_attributes>
+    <additional_attributes>420.0;10.0;420.0;100.0;10.0;100.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>592</x>
-      <y>248</y>
+      <y>264</y>
       <w>728</w>
-      <h>136</h>
+      <h>128</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;110.0;890.0;110.0;890.0;150.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0;890.0;100.0;890.0;140.0</additional_attributes>
   </element>
 </diagram>
