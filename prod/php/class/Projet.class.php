@@ -4,19 +4,21 @@
 
 class Projet extends Travaux
 {
+    /** @noinspection PhpMissingParentConstructorInspection */
     public function __construct(
         string $libele,
         DatePeriod $dateDeb,
         DatePeriod $dateFin,
-        Proposition $proposition = null,
+        //Proposition $proposition = null,
         Professeur $professeur = null
     )
     {
         $this->libele = $libele;
         $this->dateDeb = $dateDeb;
         $this->dateFin = $dateFin;
-        $this->prof = $professeur;
-        $this->proposition = $proposition;
+        $this->professeur = $professeur;
+        $this->idProfesseur = $professeur->getId();
+        //$this->propositions = $proposition;
     }
     /**
      * Usine pour fabriquer une instance à partir d'un identifiant.
@@ -29,10 +31,10 @@ class Projet extends Travaux
      *
      * @return self instance correspondant à $id
      */
-public static function createFromId(int $id) : self
-{
-    //projet
-    $stmtProjet = MyPDO::getInstance()->prepare(<<<SQL
+    public static function createFromId(int $id) : self
+    {
+        //projet
+        $stmtProjet = MyPDO::getInstance()->prepare(<<<SQL
             SELECT ID_PROJET as _id,
                    LIB_PROJET as titre,
                    DATE_DEB_PROJET as dateDeb,
@@ -40,18 +42,18 @@ public static function createFromId(int $id) : self
             FROM PROJET
             WHERE ID_PROJET = ?
 SQL
-    );
+        );
 
-    // execute projet query
-    $stmtProjet->execute([$id]);
-    $stmtProjet->setFetchMode(PDO::FETCH_CLASS, Projet::class);
+        // execute projet query
+        $stmtProjet->execute([$id]);
+        $stmtProjet->setFetchMode(PDO::FETCH_CLASS, Projet::class);
 
-    if (false === ($projet = $stmtProjet->fetch())) {
-        throw new Exception("Aucun projet d'identifiant : ".$id);
+        if (false === ($projet = $stmtProjet->fetch())) {
+            throw new Exception("Aucun projet d'identifiant : ".$id);
+        }
+
+        return $projet;
     }
-
-    return $projet;
-}
 
     public function supprimer(int $id)
     {
@@ -85,9 +87,9 @@ SQL
         return $this->propositions;
     }
 
-    /**
+    /*
      * {@inheritdoc}
-     */
+     *
     public function ajouter(string $dateDeb, string $dateFin, string $description): bool
     {
         $stmt = MyPDO::getInstance()->prepare(<<<SQL
@@ -102,13 +104,13 @@ SQL
         );
 
         return $stmt->execute([
-            ':PROFESSEUR_ID_PERS', //TODO
-            ':LIB_PROJET', //TODO Libélé du projet
-            ':DATE_DEB_PROJET', //TODO
-            ':DATE_FIN_PROJET', //TODO
+            ':PROFESSEUR_ID_PERS' => $this->idProfesseur,
+            ':LIB_PROJET' => $this->libele,
+            ':DATE_DEB_PROJET' => $this->dateDeb,
+            ':DATE_FIN_PROJET' => $this->dateFin,
         ]);
     }
-
+*/
     /**
      * {@inheritdoc}
      */
@@ -125,10 +127,9 @@ SQL
         return $stmt->fetchAll();
     }
 
-
-public function persist(): bool
-{
-    $stmt = MyPDO::getInstance()->prepare(<<<SQL
+    public function persist(): bool
+    {
+        $stmt = MyPDO::getInstance()->prepare(<<<SQL
             INSERT INTO PROJET( `LIB_PROJET`, `DATE_DEB_PROJET`, `DATE_FIN_PROJET`, `PROFESSEUR_ID_PERS`) 
             VALUES (
                 :LIB_PROJET,
@@ -136,19 +137,16 @@ public function persist(): bool
                 :DATE_FIN_PROJET,
                 :PROFESSEUR_ID_PERS
                 );
-            
-            INSERT INTO PROPOSITION(`ID_PROJET`, `DESCRIPTION`) 
-            VALUES (:ID_PROJET, :DESCRIPTION);
 SQL
-    );
+        );
 
-    return $stmt->execute([
-        ':LIB_PROJET' => $this->libele,
-        ':DATE_DEB_PROJET' => $this->dateDeb,
-        ':DATE_FIN_PROJET' => $this->dateFin,
-        ':PROFESSEUR_ID_PROJET' => $this->prof->getId(),
-        ':ID_PROJET' => $this->_id,
-        ':DESCRIPTION' => $this->proposition->getDescription(),
-    ]);
-}
+        return $stmt->execute([
+            ':LIB_PROJET' => $this->libele,
+            ':DATE_DEB_PROJET' => $this->dateDeb,
+            ':DATE_FIN_PROJET' => $this->dateFin,
+            ':PROFESSEUR_ID_PROJET' => $this->professeur->getId(),
+            //':ID_PROJET' => $this->_id, /////////// sera ajouter via la classe Proposition
+            //':DESCRIPTION' => $this->propositions->getDescription(), /////////// sera ajouter via la classe Proposition
+        ]);
+    }
 }
