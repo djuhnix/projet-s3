@@ -1,14 +1,14 @@
 <?php
 
 
-class Module
+class Module extends Entity
 {
     /**
      * Nom du module
      *
      * @var string
      */
-private $libele;
+    private $libele;
 
     /**
      * @var string
@@ -29,6 +29,42 @@ private $libele;
      * @var float
      */
     private $coefficient;
+    /**
+     * @var Etudiant[] | null
+     */
+    private $etudiants;
+
+    /**
+     * @var Professeur[] | null
+     */
+    private $professeurs;
+
+    /**
+     * Module constructor.
+     * @param string $id_module
+     * @param string $libele
+     * @param string $description
+     * @param DatePeriod $dateDebut
+     * @param DatePeriod $dateFin
+     * @param float $coefficient
+     * @noinspection PhpMissingParentConstructorInspection
+     */
+    public function __construct(
+        string $id_module,
+        string $libele,
+        string $description,
+        DatePeriod $dateDebut,
+        DatePeriod $dateFin,
+        float $coefficient
+    )
+    {
+        $this->libele = $libele;
+        $this->description = $description;
+        $this->dateDebut = $dateDebut;
+        $this->dateFin = $dateFin;
+        $this->coefficient = $coefficient;
+        $this->_id = $id_module;
+    }
 
     /**
      * @return DatePeriod
@@ -99,7 +135,7 @@ private $libele;
      */
     public function getCoefficient()
     {
-        return $this->coeficient;
+        return $this->coefficient;
     }
 
     /**
@@ -124,8 +160,8 @@ SQL
         );
 
         // execute module query
-        $stmtModule->execute([$id]);
         $stmtModule->setFetchMode(PDO::FETCH_CLASS, Module::class);
+        $stmtModule->execute([$id]);
 
         if (false === ($Module = $stmtModule->fetch())) {
             throw new Exception("Aucun module d'identifiant : ".$id);
@@ -135,6 +171,29 @@ SQL
     }
 
     /**
+     * @return Etudiant[] | null
+     */
+    public function getEtudiants() : ?array
+    {
+        if($this->etudiants === null)
+        {
+            $this->etudiants = Etudiant::getFromModuleId($this->_id);
+        }
+        return $this->etudiants;
+
+    }
+    /**
+     * @return Professeur[] | null
+     */
+    public function getProfesseurs() : ?array
+    {
+        if ($this->professeurs === null) {
+            $this->professeurs = Professeur::getFromModuleId($this->_id);
+        }
+        return $this->professeurs;
+    }
+
+        /**
      * {@inheritdoc}
      * @throws Exception
      */
@@ -159,16 +218,18 @@ SQL
     public function persist(): bool
     {
         $stmt = MyPDO::getInstance()->prepare(<<<SQL
-            INSERT INTO STAGE(`ID_ENTREPRISE`, `RESPONSABLE_ID_PERS`, `LIB_STAGE`, `DATE_DEB_STAGE`, `DATE_FIN_STAGE`, `PROFESSEUR_ID_PERS`) 
+            INSERT INTO module (`id_module`, `lib_module`, `date_deb_module`, `date_fin_module`, `coefficient`) 
             VALUES (
-                :LIB_STAGE,
-                :DATE_DEB_STAGE,
-                :DATE_FIN_STAGE,
-                :COEFFICIENT
+                    :id_module,
+                    :LIB_MODULE,
+                    :DATE_DEB_MODULE,
+                    :DATE_FIN_MODULE,
+                    :COEFFICIENT
                 );
 SQL
         );
         return $stmt->execute([
+            ':id_module' => $this->_id,
             ':LIB_MODULE' => $this->libele,
             ':DATE_DEB_MODULE' => $this->dateDebut,
             ':DATE_FIN_MODULE' => $this->dateFin,

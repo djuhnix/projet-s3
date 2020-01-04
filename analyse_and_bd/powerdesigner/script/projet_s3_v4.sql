@@ -258,6 +258,8 @@ create table module
 (
    id_module            varchar(5) not null  comment '',
    lib_module           varchar(100)  comment '',
+   date_deb_module      date  comment '',
+   date_fin_module      date  comment '',
    primary key (id_module)
 )
 
