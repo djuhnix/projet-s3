@@ -15,10 +15,7 @@ class Adresse extends Entity
      * @var string
      */
     private $ville;
-    /**
-     * @var int $idEntreprise
-     */
-    private $idEntreprise;
+
     /**
      * @var Entreprise|null
      */
@@ -54,8 +51,7 @@ class Adresse extends Entity
             SELECT id_adresse as _id,
                    rue,
                    code_postal as codePostal,
-                   ville,
-                   id_entreprise as idEntreprise
+                   ville
             FROM adresse
             WHERE id_adresse = ?
 SQL
@@ -69,17 +65,16 @@ SQL
         return $object;
     }
 
-    /**
+    /*
      * @param int $id
      * @return self[]
      * @throws Exception
-     */
+     *
     public function getFromEntrepriseId(int $id)
     {
         $stmt = MyPDO::getInstance()->prepare(
             <<<SQL
             SELECT id_adresse as _id,
-                   id_entreprise as idEntreprise,
                    rue,
                    ville,
                    code_postal as codePostal
@@ -96,6 +91,7 @@ SQL
 
         return $object;
     }
+     * */
 
     /**
      * @return string
@@ -151,7 +147,7 @@ SQL
     public function getEntreprise(): ?Entreprise
     {
         if($this->entreprise === null){
-            $this->entreprise = Entreprise::createFromId($this->idEntreprise);
+            $this->entreprise = Entreprise::getFromAdresseId($this->_id);
         }
         return $this->entreprise;
     }
@@ -196,9 +192,8 @@ SQL
     {
         $stmt = MyPDO::getInstance()->prepare(
             <<<SQL
-            INSERT INTO adresse (id_entreprise, rue, code_postal, ville) 
+            INSERT INTO adresse (rue, code_postal, ville) 
             VALUES (
-                    :id_entreprise,
                     :rue,
                     :code_postal,
                     :ville
@@ -206,7 +201,6 @@ SQL
 SQL
         );
         return $stmt->execute([
-            ':id_entreprise' => $this->idEntreprise,
             ':rue' => $this->rue,
             ':code_postal' => $this->codePostal,
             ':ville' => $this->ville,
