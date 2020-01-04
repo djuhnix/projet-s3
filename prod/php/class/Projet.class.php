@@ -9,7 +9,7 @@ class Projet extends Travaux
         DatePeriod $dateDeb,
         DatePeriod $dateFin,
         Proposition $proposition = null,
-        Professeur $professeur = null,
+        Professeur $professeur = null
     )
     {
         $this->libele = $libele;

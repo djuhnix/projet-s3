@@ -40,7 +40,7 @@ abstract class Entity
      *
      * @return self instance correspondant à $id
      */
-    abstract public static function createFromId(int $id);
+    abstract protected static function createFromId(int $id);
 
     /**
      * Accesseur à toutes les lignes de la table correspondantes.
@@ -48,7 +48,7 @@ abstract class Entity
      * @return self[]
      * @throws Exception
      */
-    abstract public static function getAll() : array;
+    abstract protected static function getAll() : array;
 
     /**
      * Fait persister une instance dans la base de données avec ses attribut.
