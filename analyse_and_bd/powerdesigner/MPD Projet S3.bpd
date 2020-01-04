@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?PowerDesigner AppLocale="UTF16" ID="{433F7E2B-1C35-43B1-A4AF-8840BF4110A5}" Label="" LastModificationDate="1578097205" Name="mpd projet s3" Objects="283" Symbols="174" Target="MySQL 5.0" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" signature="PDM_DATA_MODEL_XML" version="16.6.4.5517"?>
+<?PowerDesigner AppLocale="UTF16" ID="{433F7E2B-1C35-43B1-A4AF-8840BF4110A5}" Label="" LastModificationDate="1578097351" Name="mpd projet s3" Objects="283" Symbols="174" Target="MySQL 5.0" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" signature="PDM_DATA_MODEL_XML" version="16.6.4.5517"?>
 <!-- Veuillez ne pas modifier ce fichier -->
 
 <Model xmlns:a="attribute" xmlns:c="collection" xmlns:o="object">
@@ -13,7 +13,7 @@
 <a:Code>mpdprojets3</a:Code>
 <a:CreationDate>1575194099</a:CreationDate>
 <a:Creator>germa</a:Creator>
-<a:ModificationDate>1578096588</a:ModificationDate>
+<a:ModificationDate>1578097351</a:ModificationDate>
 <a:Modifier>germa</a:Modifier>
 <a:History>ORG {D8B047F4-F430-42D5-945E-EE3914C40E67}
 DAT 1575494003
@@ -160,7 +160,7 @@ UpdateColumnStatistics=Yes
 DeploymentMode=REP
 
 [FolderOptions\Physical Objects\Database Generation]
-GenScriptName=projet_s3_v3.sql
+GenScriptName=projet_s3_v4.sql
 GenScriptName0=projet_s3_bd_1.sql
 GenScriptName1=projet_s3_bd.sql
 GenScriptName2=projet_s3_bd
@@ -171,7 +171,7 @@ GenScriptName6=
 GenScriptName7=
 GenScriptName8=
 GenScriptName9=
-GenPathName=D:\Project\IUT\projet-s3\Analyse\powerdesigner\script\
+GenPathName=D:\projects\iut\projet-s3\analyse_and_bd\powerdesigner\script\
 GenSingleFile=Yes
 GenODBC=No
 GenCheckModel=Yes
@@ -4677,7 +4677,7 @@ DESTINATION 0 Arial,8,N</a:FontList>
 </o:ReferenceSymbol>
 <o:ReferenceSymbol Id="o18">
 <a:ModificationDate>1578096556</a:ModificationDate>
-<a:Rect>((-25980,10269), (27807,22571))</a:Rect>
+<a:Rect>((-25980,10269), (27807,22570))</a:Rect>
 <a:ListOfPoints>((-22193,10269),(-22193,22269),(27807,22269))</a:ListOfPoints>
 <a:CornerStyle>1</a:CornerStyle>
 <a:ArrowStyle>1</a:ArrowStyle>
@@ -4698,7 +4698,7 @@ DESTINATION 0 Arial,8,N</a:FontList>
 </o:ReferenceSymbol>
 <o:ReferenceSymbol Id="o21">
 <a:ModificationDate>1578096556</a:ModificationDate>
-<a:Rect>((-40193,44), (-22193,1266))</a:Rect>
+<a:Rect>((-40193,44), (-22193,1265))</a:Rect>
 <a:ListOfPoints>((-22193,269),(-40193,269))</a:ListOfPoints>
 <a:CornerStyle>1</a:CornerStyle>
 <a:ArrowStyle>1</a:ArrowStyle>
@@ -4719,7 +4719,7 @@ DESTINATION 0 Arial,8,N</a:FontList>
 </o:ReferenceSymbol>
 <o:ReferenceSymbol Id="o25">
 <a:ModificationDate>1578096556</a:ModificationDate>
-<a:Rect>((-22193,44), (-4193,1131))</a:Rect>
+<a:Rect>((-22193,44), (-4193,1130))</a:Rect>
 <a:ListOfPoints>((-4193,267),(-12382,267),(-12382,269),(-22193,269))</a:ListOfPoints>
 <a:CornerStyle>1</a:CornerStyle>
 <a:ArrowStyle>1</a:ArrowStyle>
@@ -4782,7 +4782,7 @@ DESTINATION 0 Arial,8,N</a:FontList>
 </o:ReferenceSymbol>
 <o:ReferenceSymbol Id="o32">
 <a:ModificationDate>1578096556</a:ModificationDate>
-<a:Rect>((27807,-13731), (49169,23132))</a:Rect>
+<a:Rect>((27807,-13731), (49169,23131))</a:Rect>
 <a:ListOfPoints>((27807,22269),(43807,22269),(43807,-13731))</a:ListOfPoints>
 <a:CornerStyle>1</a:CornerStyle>
 <a:ArrowStyle>1</a:ArrowStyle>
@@ -4844,7 +4844,7 @@ DESTINATION 0 Arial,8,N</a:FontList>
 </o:ReferenceSymbol>
 <o:ReferenceSymbol Id="o40">
 <a:ModificationDate>1578096556</a:ModificationDate>
-<a:Rect>((-4193,42), (11807,1184))</a:Rect>
+<a:Rect>((-4193,42), (11807,1183))</a:Rect>
 <a:ListOfPoints>((11807,269),(-4193,267))</a:ListOfPoints>
 <a:ArrowStyle>1</a:ArrowStyle>
 <a:LineColor>16744576</a:LineColor>
@@ -4864,7 +4864,7 @@ DESTINATION 0 Arial,8,N</a:FontList>
 </o:ReferenceSymbol>
 <o:ReferenceSymbol Id="o42">
 <a:ModificationDate>1578096556</a:ModificationDate>
-<a:Rect>((-40193,16044), (11807,17185))</a:Rect>
+<a:Rect>((-40193,16044), (11807,17184))</a:Rect>
 <a:ListOfPoints>((-40193,16269),(11807,16269))</a:ListOfPoints>
 <a:ArrowStyle>1</a:ArrowStyle>
 <a:LineColor>16744576</a:LineColor>
@@ -5024,7 +5024,7 @@ DESTINATION 0 Arial,8,N</a:FontList>
 </o:ReferenceSymbol>
 <o:ReferenceSymbol Id="o62">
 <a:ModificationDate>1578096556</a:ModificationDate>
-<a:Rect>((-22193,10044), (-4193,11132))</a:Rect>
+<a:Rect>((-22193,10044), (-4193,11131))</a:Rect>
 <a:ListOfPoints>((-4193,10269),(-22193,10269))</a:ListOfPoints>
 <a:ArrowStyle>1</a:ArrowStyle>
 <a:LineColor>16744576</a:LineColor>

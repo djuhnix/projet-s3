@@ -4,10 +4,10 @@
 /*==============================================================*/
 
 /*
-alter table avoir_adrss_user
+alter table user_adresse
    drop foreign key fk_avoir_ad_avoir_adr_utilisat;
 
-alter table avoir_adrss_user
+alter table user_adresse
    drop foreign key fk_avoir_ad_avoir_adr_adresse;
 
 alter table enseigner
@@ -67,10 +67,10 @@ alter table stage
 alter table stage
    drop foreign key fk_stage_stage_rea_entrepri;
 
-   alter table avoir_adrss_user
+   alter table user_adresse
       drop foreign key fk_avoir_ad_avoir_adr_utilisat;
 
-   alter table avoir_adrss_user
+   alter table user_adresse
       drop foreign key fk_avoir_ad_avoir_adr_adresse;
 
    alter table enseigner
@@ -133,7 +133,7 @@ alter table stage
 */
 drop table if exists adresse;
 
-drop table if exists avoir_adrss_user;
+drop table if exists user_adresse;
 
 drop table if exists enseigner;
 
@@ -174,9 +174,9 @@ create table adresse
 auto_increment = 1;
 
 /*==============================================================*/
-/* Table : avoir_adrss_user                                     */
+/* Table : user_adresse                                     */
 /*==============================================================*/
-create table avoir_adrss_user
+create table user_adresse
 (
    id_pers              int(10) not null  comment '',
    id_adresse           int(10) not null  comment '',
@@ -352,10 +352,10 @@ create table utilisateur
 
 auto_increment = 1;
 
-alter table avoir_adrss_user add constraint fk_avoir_ad_avoir_adr_utilisat foreign key (id_pers)
+alter table user_adresse add constraint fk_avoir_ad_avoir_adr_utilisat foreign key (id_pers)
       references utilisateur (id_pers) on delete restrict on update restrict;
 
-alter table avoir_adrss_user add constraint fk_avoir_ad_avoir_adr_adresse foreign key (id_adresse)
+alter table user_adresse add constraint fk_avoir_ad_avoir_adr_adresse foreign key (id_adresse)
       references adresse (id_adresse) on delete restrict on update restrict;
 
 alter table enseigner add constraint fk_enseigne_enseigner_module foreign key (id_module)

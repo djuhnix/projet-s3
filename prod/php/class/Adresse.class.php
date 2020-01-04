@@ -65,12 +65,12 @@ SQL
         return $object;
     }
 
-    /*
+    /**
      * @param int $id
      * @return self[]
      * @throws Exception
-     *
-    public function getFromEntrepriseId(int $id)
+     */
+    public function getFromEntrepriseId(int $id) : array
     {
         $stmt = MyPDO::getInstance()->prepare(
             <<<SQL
@@ -78,7 +78,7 @@ SQL
                    rue,
                    ville,
                    code_postal as codePostal
-            FROM adresse
+            FROM adresse a JOIN entreprise e on a.id_adresse = e.id_adresse
             WHERE id_entreprise = ?
 SQL
         );
@@ -91,7 +91,66 @@ SQL
 
         return $object;
     }
-     * */
+
+    /**
+     * @param int $id
+     * @return self[]
+     * @throws Exception
+     */
+    public function getFromUserId(int $id) : array
+    {
+        $stmt = MyPDO::getInstance()->prepare(
+            <<<SQL
+            SELECT id_adresse as _id,
+                   rue,
+                   ville,
+                   code_postal as codePostal
+            FROM adresse a JOIN user_adresse ua on a.id_adresse = ua.id_adresse
+            WHERE id_pers = ?
+SQL
+        );
+        $stmt->setFetchMode(PDO::FETCH_CLASS, Adresse::class);
+        $stmt->execute([$id]);
+        $object = $stmt->fetchAll();
+        if (false === $object) {
+            throw new Exception('Aucunne Adresse avec l\'identifiant d\'utilisateurs : '.$id);
+        }
+
+        return $object;
+    }
+
+    /**
+     * @param int $id_pers
+     * @param int $id_adresse
+     * @return self
+     * @throws Exception
+     */
+    public function getFromAdresseAndUserId(int $id_pers, int $id_adresse) : Adresse
+    {
+        $stmt = MyPDO::getInstance()->prepare(
+            <<<SQL
+            SELECT id_adresse as _id,
+                   rue,
+                   ville,
+                   code_postal as codePostal
+            FROM adresse a JOIN user_adresse ua on a.id_adresse = ua.id_adresse
+            WHERE id_pers = :id_pers
+                AND a.id_adresse = :id_adresse
+SQL
+        );
+        $stmt->setFetchMode(PDO::FETCH_CLASS, Adresse::class);
+        $stmt->execute([
+            ':id_pers' => $id_pers,
+            ':id_adresse' => $id_adresse,
+            ]);
+        $object = $stmt->fetch();
+        if (false === $object) {
+            throw new Exception('Aucunne Adresse avec l\'identifiant d\'utilisateur : ' . $id_pers . ' Et d\'adresse :' . $id_adresse);
+        }
+
+        return $object;
+    }
+
 
     /**
      * @return string
