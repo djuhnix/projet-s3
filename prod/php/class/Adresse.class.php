@@ -17,6 +17,10 @@ class Adresse extends Entity
     private $ville;
 
     /**
+     * @var int
+     */
+    private $idEntreprise;
+    /**
      * @var Entreprise|null
      */
     private $entreprise;
@@ -74,7 +78,7 @@ SQL
     {
         $stmt = MyPDO::getInstance()->prepare(
             <<<SQL
-            SELECT id_adresse as _id,
+            SELECT a.id_adresse as _id,
                    rue,
                    ville,
                    code_postal as codePostal
@@ -101,7 +105,7 @@ SQL
     {
         $stmt = MyPDO::getInstance()->prepare(
             <<<SQL
-            SELECT id_adresse as _id,
+            SELECT a.id_adresse as _id,
                    rue,
                    ville,
                    code_postal as codePostal
@@ -129,7 +133,7 @@ SQL
     {
         $stmt = MyPDO::getInstance()->prepare(
             <<<SQL
-            SELECT id_adresse as _id,
+            SELECT a.id_adresse as _id,
                    rue,
                    ville,
                    code_postal as codePostal
