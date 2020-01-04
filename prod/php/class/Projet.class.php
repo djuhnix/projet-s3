@@ -4,6 +4,20 @@
 
 class Projet extends Travaux
 {
+    public function __construct(
+        string $libele,
+        DatePeriod $dateDeb,
+        DatePeriod $dateFin,
+        Proposition $proposition = null,
+        Professeur $professeur = null,
+    )
+    {
+        $this->libele = $libele;
+        $this->dateDeb = $dateDeb;
+        $this->dateFin = $dateFin;
+        $this->prof = $professeur;
+        $this->proposition = $proposition;
+    }
     /**
      * Usine pour fabriquer une instance à partir d'un identifiant.
      *
@@ -15,9 +29,10 @@ class Projet extends Travaux
      *
      * @return self instance correspondant à $id
      */
-    public static function createFromId(int $id)
-    {
-        $stmt = MyPDO::getInstance()->prepare(<<<SQL
+public static function createFromId(int $id) : self
+{
+    //projet
+    $stmtProjet = MyPDO::getInstance()->prepare(<<<SQL
             SELECT ID_PROJET as _id,
                    LIB_PROJET as titre,
                    DATE_DEB_PROJET as dateDeb,
@@ -25,16 +40,18 @@ class Projet extends Travaux
             FROM PROJET
             WHERE ID_PROJET = ?
 SQL
-);
-        $stmt->execute([$id]);
-        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Projet');
-        $object = $stmt->fetch();
-        if (false === $object) {
-            throw new Exception('Projet inconnu : '.$id);
-        }
+    );
 
-        return $object;
+    // execute projet query
+    $stmtProjet->execute([$id]);
+    $stmtProjet->setFetchMode(PDO::FETCH_CLASS, Projet::class);
+
+    if (false === ($projet = $stmtProjet->fetch())) {
+        throw new Exception("Aucun projet d'identifiant : ".$id);
     }
+
+    return $projet;
+}
 
     public function supprimer(int $id)
     {
@@ -109,4 +126,30 @@ SQL
 
         return $stmt->fetchAll();
     }
+
+public function persist(): bool
+{
+    $stmt = MyPDO::getInstance()->prepare(<<<SQL
+            INSERT INTO PROJET( `LIB_PROJET`, `DATE_DEB_PROJET`, `DATE_FIN_PROJET`, `PROFESSEUR_ID_PERS`) 
+            VALUES (
+                :LIB_PROJET,
+                :DATE_DEB_PROJET,
+                :DATE_FIN_PROJET,
+                :PROFESSEUR_ID_PERS
+                );
+            
+            INSERT INTO PROPOSITION(`ID_PROJET`, `DESCRIPTION`) 
+            VALUES (:ID_PROJET, :DESCRIPTION);
+SQL
+    );
+
+    return $stmt->execute([
+        ':LIB_PROJET' => $this->libele,
+        ':DATE_DEB_PROJET' => $this->dateDeb,
+        ':DATE_FIN_PROJET' => $this->dateFin,
+        ':PROFESSEUR_ID_PROJET' => $this->prof->getId(),
+        ':ID_PROJET' => $this->_id,
+        ':DESCRIPTION' => $this->proposition->getDescription(),
+    ]);
+}
 }
