@@ -1,5 +1,5 @@
 <?php
-
+require_once 'autoload.inc.php';
 /* En cours */
 
 class Stage extends Travaux
@@ -11,27 +11,34 @@ class Stage extends Travaux
      */
     private $entreprise = null;
     /**
+     * @var int $idEntreprise
+     */
+    private $idEntreprise;
+    /**
      * Le responsable du stage dans l'entreprise
      *
      * @var Responsable
      */
     private $responsable = null;
+    /**
+     * @var int $idResponsable
+     */
+    private $idResponsable;
 
     /**
      * Stage constructor.
      * @param string $libele
      * @param DatePeriod $dateDeb
      * @param DatePeriod $dateFin
-     * @param Proposition $proposition
      * @param Entreprise $entreprise
      * @param Professeur|null $professeur
      * @param Responsable $responsable
+     * @noinspection PhpMissingParentConstructorInspection
      */
     public function __construct(
         string $libele,
         DatePeriod $dateDeb,
         DatePeriod $dateFin,
-        Proposition $proposition = null,
         Entreprise $entreprise = null,
         Professeur $professeur = null,
         Responsable $responsable = null
@@ -42,8 +49,10 @@ class Stage extends Travaux
         $this->responsable = $responsable;
         $this->dateDeb = $dateDeb;
         $this->dateFin = $dateFin;
-        $this->prof = $professeur;
-        $this->proposition = $proposition;
+        $this->professeur = $professeur;
+        $this->idProfesseur = (int) $professeur->getId();
+        $this->idEntreprise = (int) $entreprise->getId();
+        $this->idResponsable = (int) $responsable->getId();
     }
 
 
@@ -65,7 +74,8 @@ class Stage extends Travaux
             SELECT ID_STAGE as _id,
                    LIB_STAGE as titre,
                    DATE_DEB_STAGE as dateDeb,
-                   DATE_FIN_STAGE as dateFin
+                   DATE_FIN_STAGE as dateFin,
+                   id_entreprise as idEntreprise
             FROM STAGE
             WHERE ID_STAGE = ?
 SQL
@@ -83,30 +93,132 @@ SQL
     }
 
     /**
+     * @return int
+     */
+    public function getIdEntreprise(): int
+    {
+        return (int)  $this->idEntreprise;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdResponsable(): int
+    {
+        return (int) $this->idResponsable;
+    }
+
+    /**
+     * @param string $id L'identifiant du professeur
+     * @return Stage[]
+     * @throws Exception
+     */
+    public static function getFromProfesseurId(string $id) : array
+    {
+        $stmt = MyPDO::getInstance()->prepare(<<<SQL
+            SELECT id_stage as _id,
+                   id_entreprise as idEntreprise,
+                   professeur_id_pers as idProfesseur,
+                   responsable_id_pers as idResponsable,
+                   lib_stage as libele,
+                   date_deb_stage as dateDeb,
+                   date_fin_stage as dateFin
+            FROM stage
+            WHERE professeur_id_pers = ?
+SQL
+        );
+        // execute stage query
+        $stmt->setFetchMode(PDO::FETCH_CLASS, Stage::class);
+        $stmt->execute([$id]);
+        return $stmt->fetchAll();
+
+    }
+    /**
+     * @param string $id L'identifiant de l'entreprise
+     * @return Stage[]
+     * @throws Exception
+     */
+    public static function getFromEntrepriseId(string $id) : array
+    {
+        $stmt = MyPDO::getInstance()->prepare(<<<SQL
+            SELECT id_stage as _id,
+                   id_entreprise as idEntreprise,
+                   professeur_id_pers as idProfesseur,
+                   responsable_id_pers as idResponsable,
+                   lib_stage as libele,
+                   date_deb_stage as dateDeb,
+                   date_fin_stage as dateFin
+            FROM stage
+            WHERE id_entreprise = ?
+SQL
+        );
+        // execute stage query
+        $stmt->setFetchMode(PDO::FETCH_CLASS, Stage::class);
+        $stmt->execute([$id]);
+        return $stmt->fetchAll();
+    }
+    /**
+     * @param string $id L'identifiant du responsable de stage dans l'entreprise
+     * @return Stage[]
+     * @throws Exception
+     */
+    public static function getFromResponsableId(string $id) : array
+    {
+        $stmt = MyPDO::getInstance()->prepare(<<<SQL
+            SELECT id_stage as _id,
+                   id_entreprise as idEntreprise,
+                   professeur_id_pers as idProfesseur,
+                   responsable_id_pers as idResponsable,
+                   lib_stage as libele,
+                   date_deb_stage as dateDeb,
+                   date_fin_stage as dateFin
+            FROM stage
+            WHERE responsable_id_pers = ?
+SQL
+        );
+        // execute stage query
+        $stmt->setFetchMode(PDO::FETCH_CLASS, Stage::class);
+        $stmt->execute([$id]);
+        return $stmt->fetchAll();
+    }
+
+    /**
+     * @return Entreprise
+     */
+    public function getEntreprise(): Entreprise
+    {
+        if ($this->entreprise === null)
+        {
+            $this->entreprise = Entreprise::createFromId($this->idEntreprise);
+        }
+        return $this->entreprise;
+    }
+
+    /**
+     * @return Responsable
+     * @throws Exception
+     */
+    public function getResponsable(): Responsable
+    {
+        if ($this->responsable === null)
+        {
+            $this->responsable = Responsable::createFromId($this->idEntreprise);
+        }
+        return $this->responsable;
+    }
+
+    /**
      * {@inheritdoc}
      *
      * @throws Exception
      */
-    public function getProposition(): array
+    public function getPropositions(): array
     {
-        if (null == $this->proposition) {
-            $stmtProp = MyPDO::getInstance()->prepare(<<<SQL
-            SELECT ID_PROPOSITION as _id,
-                   DESCRIPTION as description
-            FROM PROPOSITION
-            WHERE ID_STAGE = ?
-SQL
-            );
-
-            $stmtProp->execute([$this->_id]);
-            $stmtProp->setFetchMode(PDO::FETCH_CLASS, Proposition::class);
-            $this->proposition = $stmtProp->fetchAll();
+        if (null === $this->propositions) {
+            $this->propositions = Proposition::getFromStageId($this->_id);
         }
-
-        return $this->proposition;
+        return $this->propositions;
     }
-
-
 
     /**
      * {@inheritdoc}
@@ -119,8 +231,8 @@ SQL
             FROM STAGE
 SQL
 );
-        $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, Stage::class);
+        $stmt->execute();
 
         return $stmt->fetchAll();
     }
@@ -128,6 +240,7 @@ SQL
     /**
      * Fait persister une instance dans la base de données avec ses attribut.
      * Ajoute une ligne dans la table de stage avec la proposition associer.
+     * @throws Exception
      */
     public function persist(): bool
     {
@@ -141,21 +254,15 @@ SQL
                 :DATE_FIN_STAGE,
                 :PROFESSEUR_ID_PERS
                 );
-            
-            INSERT INTO PROPOSITION(`ID_STAGE`, `DESCRIPTION`) 
-            VALUES (:ID_STAGE, :DESCRIPTION);
 SQL
         );
-
         return $stmt->execute([
-            ':ID_ENTREPRISE' => $this->entreprise->getId(),
-            ':RESPONSABLE_ID_PERS' => $this->responsable->getId(),
+            ':ID_ENTREPRISE' => $this->idEntreprise,
+            ':RESPONSABLE_ID_PERS' => $this->idResponsable,
             ':LIB_STAGE' => $this->libele,
             ':DATE_DEB_STAGE' => $this->dateDeb,
             ':DATE_FIN_STAGE' => $this->dateFin,
-            ':PROFESSEUR_ID_PERS' => $this->prof->getId(),
-            ':ID_STAGE' => $this->_id,
-            ':DESCRIPTION' => $this->proposition->getDescription(),
+            ':PROFESSEUR_ID_PERS' => $this->idProfesseur,
         ]);
     }
 }

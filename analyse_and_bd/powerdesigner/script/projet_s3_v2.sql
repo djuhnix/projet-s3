@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* Nom de SGBD :  MySQL 5.0                                     */
-/* Date de création :  06/12/2019 13:08:21                      */
+/* Date de crï¿½ation :  06/12/2019 13:08:21                      */
 /*==============================================================*/
 
 
@@ -369,7 +369,7 @@ alter table INSCRIRE add constraint FK_INSCRIRE_INSCRIRE2_ETUDIANT foreign key (
 alter table PROFESSEUR add constraint FK_PROFESSE_H_TILISAT_UTILISAT foreign key (ID_PERS)
       references UTILISATEUR (ID_PERS) on delete restrict on update restrict;
 
-alter table PROJET add constraint FK_PROJET_PROPOSER__PROFESSE foreign key (ID_PERS)
+alter table PROJET add constraint FK_PROJET_PROPOSER__PROFESSE foreign key (professeur_id_pers)
       references PROFESSEUR (ID_PERS) on delete restrict on update restrict;
 
 alter table RESPONSABLE add constraint FK_RESPONSA_EMPLOYER_ENTREPRI foreign key (ID_ENTREPRISE)

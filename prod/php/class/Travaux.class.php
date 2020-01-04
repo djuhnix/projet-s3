@@ -1,4 +1,5 @@
 <?php
+require_once 'autoload.inc.php';
 
 abstract class Travaux extends Entity
 {
@@ -7,9 +8,9 @@ abstract class Travaux extends Entity
      */
     protected $libele; //string
     /**
-     * @var Proposition[] | NULL
+     * @var Proposition[] | null
      */
-    protected $proposition = null;
+    protected $propositions = null;
     /**
      * @var DatePeriod
      */
@@ -22,7 +23,11 @@ abstract class Travaux extends Entity
     /**
      * @var Professeur | null
      */
-    protected $prof = null;
+    protected $professeur = null;
+    /**
+     * @var int $idProfesseur
+     */
+    protected $idProfesseur;
     /**
      *  Constructeur non accessible.
      * @noinspection PhpMissingParentConstructorInspection
@@ -32,9 +37,32 @@ abstract class Travaux extends Entity
     {
     }
 
-    public function getLibele(): string
+    /**
+     * @return int
+     */
+    public function getIdProfesseur(): int
     {
-        return $this->libele;
+        return (int) $this->idProfesseur;
+    }
+
+    /**
+     * @return Professeur|null
+     */
+    public function getProfesseur(): ?Professeur
+    {
+        if ($this->professeur === null)
+        {
+            $this->professeur = Professeur::createFromId($this->idProfesseur);
+        }
+        return $this->professeur;
+    }
+
+    /**
+     * @param Professeur|null $professeur
+     */
+    public function setProfesseur(?Professeur $professeur): void
+    {
+        $this->professeur = $professeur;
     }
 
     /**
@@ -43,6 +71,15 @@ abstract class Travaux extends Entity
     public function getDateFin()
     {
         return $this->dateFin;
+    }
+
+
+    /**
+     * @param DatePeriod $dateFin
+     */
+    public function setDateFin(DatePeriod $dateFin): void
+    {
+        $this->dateFin = $dateFin;
     }
 
     /**
@@ -54,17 +91,29 @@ abstract class Travaux extends Entity
     }
 
     /**
-     * @param mixed $proposition
+     * @param DatePeriod $dateDeb
      */
-    public function setProposition($proposition): void
+    public function setDateDeb(DatePeriod $dateDeb): void
     {
-        $this->proposition = $proposition;
+        $this->dateDeb = $dateDeb;
+    }
+    public function getLibele(): string
+    {
+        return $this->libele;
+    }
+
+    /**
+     * @param string $libele
+     */
+    public function setLibele(string $libele): void
+    {
+        $this->libele = $libele;
     }
 
     /**
      * @return Proposition[]
      */
-    abstract public function getProposition(): array;
+    abstract public function getPropositions(): array;
 
     /**
      * @return self[]

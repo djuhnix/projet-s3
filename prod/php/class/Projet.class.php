@@ -59,15 +59,16 @@ SQL
             DELETE FROM PROJET
             WHERE ID_PROJET = ?
 SQL
+        );
         $stmt->execute([$id]);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getProposition(): array
+    public function getPropositions(): array
     {
-        if (null == $this->proposition) {
+        if (null == $this->propositions) {
             $stmtProp = MyPDO::getInstance()->prepare(<<<SQL
             SELECT ID_PROPOSITION as _id,
                    DESCRIPTION as description
@@ -78,10 +79,10 @@ SQL
 
             $stmtProp->execute([$this->_id]);
             $stmtProp->setFetchMode(PDO::FETCH_CLASS, Proposition::class);
-            $this->proposition = $stmtProp->fetchAll();
+            $this->propositions = $stmtProp->fetchAll();
         }
 
-        return $this->proposition;
+        return $this->propositions;
     }
 
     /**
@@ -90,21 +91,18 @@ SQL
     public function ajouter(string $dateDeb, string $dateFin, string $description): bool
     {
         $stmt = MyPDO::getInstance()->prepare(<<<SQL
-            INSERT INTO PROJET(``PROFESSEUR_ID_PERS``, `LIB_PROJET`, `DATE_DEB_PROJET`, `DATE_FIN_PROJET`) 
+            INSERT INTO PROJET(`PROFESSEUR_ID_PERS`, `LIB_PROJET`, `DATE_DEB_PROJET`, `DATE_FIN_PROJET`) 
             VALUES (
-                :`PROFESSEUR_ID_PERS`,
+                :PROFESSEUR_ID_PERS,
                 :LIB_PROJET,
                 :DATE_DEB_PROJET,
-                :DATE_FIN_PROJET,
-                );
-            
-            INSERT INTO PROPOSITION(`ID_PROJET`, `DESCRIPTION`) 
-            VALUES ([value-1],[value-2],[value-3],[value-4]);
+                :DATE_FIN_PROJET
+                )         
 SQL
         );
 
         return $stmt->execute([
-            '`PROFESSEUR_ID_PERS`', //TODO
+            ':PROFESSEUR_ID_PERS', //TODO
             ':LIB_PROJET', //TODO Libélé du projet
             ':DATE_DEB_PROJET', //TODO
             ':DATE_FIN_PROJET', //TODO
@@ -114,18 +112,19 @@ SQL
     /**
      * {@inheritdoc}
      */
-    public function getAll(): array
+    public static function getAll(): array
     {
         $stmt = MyPDO::getInstance()->prepare(<<<SQL
             SELECT *
             FROM PROJET
 SQL
         );
-        $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, Projet::class);
+        $stmt->execute();
 
         return $stmt->fetchAll();
     }
+
 
 public function persist(): bool
 {

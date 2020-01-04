@@ -1,5 +1,3 @@
-
-
 <?php
 
 /**
@@ -48,12 +46,14 @@ abstract class Entity
      * Accesseur à toutes les lignes de la table correspondantes.
      *
      * @return self[]
+     * @throws Exception
      */
     abstract public static function getAll() : array;
 
     /**
      * Fait persister une instance dans la base de données avec ses attribut.
      * @return bool Selon la réussite de l'action
+     * @throws Exception
      */
     abstract public function persist() : bool;
 

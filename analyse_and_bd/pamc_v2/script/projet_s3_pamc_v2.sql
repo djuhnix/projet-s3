@@ -238,7 +238,7 @@ alter table INSCRIRE add constraint FK_INSCRIRE2 foreign key (ID_PERS)
 alter table PROFESSEUR add constraint FK_H_TILISATEUR foreign key (ID_PERS)
       references UTILISATEUR (ID_PERS) on delete restrict on update restrict;
 
-alter table PROJET add constraint FK_PROPOSER_PROJET foreign key (ID_PERS)
+alter table PROJET add constraint FK_PROPOSER_PROJET foreign key (professeur_id_pers)
       references PROFESSEUR (ID_PERS) on delete restrict on update restrict;
 
 alter table RESPONSABLE add constraint FK_EMPLOYER foreign key (ID_ENTREPRISE)
