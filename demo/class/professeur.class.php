@@ -6,7 +6,6 @@ require_once('autoload.include.php') ;
 class Professeur extends User
 {
 
-    
 
   /**
      * Fonction de validation du couple Login/mot de passe.
@@ -62,5 +61,11 @@ SQL
         }
         throw new NotInSessionException() ;
     }
+
+    public function isAdmin() : bool {
+        $res = false;
+        if ($this->id == 0){ $res = true; }
+        return $res;
+    }    
 
 }

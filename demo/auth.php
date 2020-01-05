@@ -23,6 +23,12 @@ try {
             $user->saveIntoSession() ;
             $p->appendToHead("<meta http-equiv='refresh' content='3; URL=entreprises.php'>");
             break;
+            
+        case 'g':
+            $user = Professeur::createFromAuthSHA512($_REQUEST) ;
+            $user->saveIntoSession() ;
+            $p->appendToHead("<meta http-equiv='refresh' content='3; URL=gestion.php'>");
+            break;
         
         default:
             $p->appendToHead(<<<HTML

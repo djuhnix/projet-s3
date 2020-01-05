@@ -43,4 +43,21 @@ SQL
         }
     }
 
+    /**
+     * Lecture de l'objet User dans la session
+     * @throws NotInSessionException si l'objet n'est pas dans la session
+     *
+     * @return etudiant
+     */
+    static public function createFromSession() : self {
+        Session::start() ;
+        if (isset($_SESSION[self::session_key]['user'])) {
+            $u = $_SESSION[self::session_key]['user'] ;
+
+            if (is_object($u) && get_class($u) == get_class()) {
+                return $u ;
+            }
+        }
+        throw new NotInSessionException() ;
+    }
 }

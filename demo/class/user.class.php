@@ -10,7 +10,7 @@ class NotInSessionException extends Exception { }
 /**
 * Class Utilisateur liant la Platform à la BD.
 */
-abstract class User {
+abstract class User extends Entity {
     /**
      * Identifiant unique du User dans la base de données
      * @var string $id
@@ -64,6 +64,18 @@ abstract class User {
     private function __construct() {
     }
 
+    protected static function createFromId(int $id){
+        // voir createFromSession ou createFromAuth512
+    }
+    
+    protected static function getAll() : array{
+        // TODO
+    }
+    
+    public function persist(): bool{
+        // voir saveIntoSessio
+    }
+
     /**
      * Accesseur sur le prénom de l'Utilisateur
      *
@@ -86,7 +98,7 @@ abstract class User {
     <div><span>Login    </span> : <span>{$this->login}    </span></div>
     <div><span>Téléphone</span> : <span>{$this->phone}    </span></div>
     <div><span>E-mail   </span> : <span>{$this->mail}    </span></div>
-    <div><span>Date de naissance</span> : <span>$this->dateNaissance    </span></div>
+    <div><span>Date de naissance</span> : <span>{$this->dateNaissance}    </span></div>
 HTML;
     }
 
@@ -188,9 +200,9 @@ HTML;
         $text = htmlspecialchars($text, ENT_COMPAT, 'utf-8') ;
         return <<<HTML
     <form action='$action' method='POST'>
-    <button class="nav-link" style="" type='submit' name='logout'>$text</button>
     
-
+        <a class="nav-link" type='submit' name='logout'>$text</a>
+    
     </form>
 HTML;
     }

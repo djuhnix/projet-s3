@@ -2,7 +2,7 @@
 require_once('autoload.include.php') ;
 
 if (!User::isConnected()) {
-    header("Location: http://{$_SERVER['SERVER_NAME']}/".dirname($_SERVER['PHP_SELF'])."/form.php") ;
+    header("Location: http://{$_SERVER['SERVER_NAME']}/".dirname($_SERVER['PHP_SELF'])."/form.php?logout") ;
     die() ;
 }
 
@@ -66,7 +66,7 @@ $p->appendContent(<<<HTML
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{$log}">Deconnexion</a>
+                        <a class="nav-link" href="$log">Deconnexion</a>
                     </li>
 
                 </ul>

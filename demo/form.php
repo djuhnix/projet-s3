@@ -21,9 +21,14 @@ try {
                 $u = Entreprise::createFromSession() ;
                 header('Location: entreprise.php');      
                 break;
+            
+            case 'g': 
+                $u = Professeur::createFromSession() ;
+                header('Location: form.php?logout');     
+                break;
                 
             default:
-                header('Location: index.html');      
+                header('Location: index.html'); 
                 break;
         }
     /*$u = User::createFromSession() ;
@@ -50,6 +55,10 @@ catch (NotInSessionException $e) {
         
         case 's':
             $form = Entreprise::loginFormSHA512('auth.php?u=s') ;
+            break;
+
+        case 'g':
+            $form = Professeur::loginFormSHA512('auth.php?u=g') ;
             break;
         
         default:

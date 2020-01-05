@@ -4,9 +4,9 @@ require_once('autoload.include.php') ;
 try {
 $u = Professeur::createFromSession() ;
 
-$log = "http://{$_SERVER['SERVER_NAME']}/".dirname($_SERVER['PHP_SELF'])."/form.php";
+$log = "http://{$_SERVER['SERVER_NAME']}/".dirname($_SERVER['PHP_SELF'])."/form.php?logout";
 
-$p = new WebPage("Page Eleves Connecté") ;
+$p = new WebPage("Page Professeurs") ;
 
 
 $p->appendToHead(<<<HTML
@@ -71,8 +71,7 @@ $p->appendContent(<<<HTML
                     </li>
 
                     <li class="nav-item">
-                        {$u->logoutForm($log, 'Deconnexion')}
-
+                        <a class="nav-link" href="$log">Deconnexion</a>
                     </li>
 
                 </ul>
