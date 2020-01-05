@@ -1,41 +1,77 @@
 <?php
+require_once('autoload.include.php') ;
+require_once('MyPDO.template.php') ;
+require_once('MyPDO.class.php') ;
 
-
-class Responsable extends Entity
+class Responsable extends User
 {
+    /**
+    * Identifiant unique du User dans la base de données
+    * @var string $idEntreprise
+    */
+   protected $id_entreprise = null ;
 
     /**
-     * Usine pour fabriquer une instance à partir d'un identifiant.
+     * Accesseur sur le id_entreprise de l'Utilisateur
      *
-     * Les données seront issues de la base de données
-     *
-     * @param int $id identifiant BD de l'entité à créer
-     *
-     * @throws Exception si l'entité ne peut pas être trouvée dans la base de données
-     *
-     * @return self instance correspondant à $id
+     * @return int id_entreprise
      */
-    public static function createFromId(int $id)
-    {
-        // TODO: Implement createFromId() method.
+    public function getEntrepriseId() {
+        return $this->id_entreprise ;
+    }
+
+  /**
+     * Fonction de validation du couple Login/mot de passe.
+     * @param array $data 
+     *
+     * @return Responsable utilisateur authentifié
+     */
+    public static function createFromAuthSHA512(array $data)  {
+        if (!isset($data['code'])) {
+            throw new AuthenticationException("pas de login/pass fournis") ;
+        }
+
+        Session::start() ;
+        // Préparation : 
+        $stmt = MyPDO::getInstance();
+        $stmt = $stmt->prepare(<<<SQL
+    SELECT utilisateur.id_pers, firstName, lastName, login, mail, DATE_FORMAT(datenaisssance, '%d %m %Y')
+    FROM utilisateur, responsable
+    WHERE SHA2(CONCAT(sha512pass, :challenge, SHA2(login, 512)), 512) = :code
+    AND utilisateur.id_pers = responsable.id_pers
+SQL
+    ) ;
+
+        $stmt->execute(array(
+            ':challenge' => isset($_SESSION[self::session_key]['challenge']) ? $_SESSION[self::session_key]['challenge'] : '',
+            ':code'      => $data['code'])) ;
+        
+        unset($_SESSION[self::session_key]['challenge']) ;
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, __CLASS__) ;
+        if (($utilisateur = $stmt->fetch()) !== false) {
+            return $utilisateur ;
+        }
+        else {
+            throw new AuthenticationException("Login/pass incorrect") ;
+        }
     }
 
     /**
-     * Accesseur à toutes les lignes de la table correspondantes.
+     * Lecture de l'objet User dans la session
+     * @throws NotInSessionException si l'objet n'est pas dans la session
      *
-     * @return self[]
+     * @return etudiant
      */
-    public static function getAll(): array
-    {
-        // TODO: Implement getAll() method.
-    }
+    static public function createFromSession() : self {
+        Session::start() ;
+        if (isset($_SESSION[self::session_key]['user'])) {
+            $u = $_SESSION[self::session_key]['user'] ;
 
-    /**
-     * Fait persister une instance dans la base de données avec ses attribut.
-     * @return bool Selon la réussite de l'action
-     */
-    public function persist(): bool
-    {
-        // TODO: Implement persist() method.
+            if (is_object($u) && get_class($u) == get_class()) {
+                return $u ;
+            }
+        }
+        throw new NotInSessionException() ;
     }
 }
