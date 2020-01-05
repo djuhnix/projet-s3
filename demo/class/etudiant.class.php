@@ -6,6 +6,38 @@ require_once('MyPDO.class.php') ;
 class Etudiant extends User
 {
 
+    /**
+     * Identifiant unique du User dans la base de données
+     * @var string $idstage
+     */
+    protected $id_stage = null ;    
+    
+    /**
+    * Identifiant unique du User dans la base de données
+    * @var string $idProjet
+    */
+   protected $id_projet = null ;
+
+
+    /**
+     * Accesseur sur le id_stage de l'Utilisateur
+     *
+     * @return int id_stage
+     */
+    public function getStageId() {
+        return $this->id_stage ;
+    }
+
+     /**
+     * Accesseur sur le id_projet de l'Utilisateur
+     *
+     * @return int id_projet
+     */
+    public function getProjetId() {
+        return $this->id_projet ;
+    }
+
+
   /**
      * Fonction de validation du couple Login/mot de passe.
      * @param array $data 
@@ -21,10 +53,10 @@ class Etudiant extends User
         // Préparation : 
         $stmt = MyPDO::getInstance();
         $stmt = $stmt->prepare(<<<SQL
-    SELECT id, firstName, lastName, login, phone, mail, DATE_FORMAT(dateNaissance, '%d %m %Y')
-    FROM user, etudiant
+    SELECT utilisateur.id_pers, firstName, lastName, login, mail, DATE_FORMAT(datenaisssance, '%d %m %Y'), etudiant.id_stage, etudiant.id_projet
+    FROM utilisateur, etudiant
     WHERE SHA2(CONCAT(sha512pass, :challenge, SHA2(login, 512)), 512) = :code
-    AND id = etudiant.N_PERS
+    AND utilisateur.id_pers = etudiant.id_pers
 SQL
     ) ;
 

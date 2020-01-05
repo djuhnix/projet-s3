@@ -18,7 +18,7 @@ try {
                 break;
             
             case 's':
-                $u = Entreprise::createFromSession() ;
+                $u = Responsable::createFromSession() ;
                 header('Location: entreprise.php');      
                 break;
             
@@ -54,7 +54,7 @@ catch (NotInSessionException $e) {
             break;
         
         case 's':
-            $form = Entreprise::loginFormSHA512('auth.php?u=s') ;
+            $form = Responsable::loginFormSHA512('auth.php?u=s') ;
             break;
 
         case 'g':

@@ -96,20 +96,21 @@ $p->appendContent(<<<HTML
                     <div class="col-lg-3">
                         <h4><b>Titre</b></h4>
                         <p>nom de l'entreprise</p>
+                        <p>ID stage {$u->getStageId()}</p>
                     </div>
 
                     <div class="col-lg-6 desc">
                         <p>description du stage</p>
                     </div>
 
-                    <div class="col-lg-3" align ="right">
+                    <div class="col-lg-3" align="right">
                         <a class="btn btn-danger" href="#" >
                             <span class="fas fa-trash center "></span>
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-12 card">
+            <!-- <div class="col-lg-12 card">
                 <div class="container row">
                     <div class="col-lg-3">
                         <h4><b>Titre</b></h4>
@@ -121,7 +122,7 @@ $p->appendContent(<<<HTML
                     </div>
                 </div>
 
-            </div>
+            </div> -->
             <a class="btn icon-btn btn-success center" href="#">
                 <span class="fas fa-plus btn-font text-success "></span>
                 Add
@@ -135,6 +136,7 @@ $p->appendContent(<<<HTML
                     <div class="col-lg-3">
                         <h4><b>Titre</b></h4>
                         <p>nom de l'enseignant</p>
+                        <p>ID Projet {$u->getProjetId()}</p>
                     </div>
 
                     <div class="col-lg-5 desc">
@@ -143,7 +145,7 @@ $p->appendContent(<<<HTML
                 </div>
 
             </div>
-            <div class="col-lg-12 card">
+            <!-- <div class="col-lg-12 card">
                 <div class="container row">
                     <div class="col-lg-3">
                         <h4><b>Titre</b></h4>
@@ -154,7 +156,7 @@ $p->appendContent(<<<HTML
                         <p>description du projet</p>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!--ajout de projet -->
             <a class="btn icon-btn btn-success center" href="#">
                 <span class="fas fa-plus btn-font text-success"></span>
