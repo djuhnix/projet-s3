@@ -1,6 +1,5 @@
 <?php
-
-/* En cours */
+require_once 'autoload.inc.php';
 
 class Projet extends Travaux
 {
@@ -108,7 +107,9 @@ SQL
     }
 
     /**
+     * @param $id
      * @return Etudiant[]
+     * @throws Exception
      */
     public function getEtudiants($id) : array
     {

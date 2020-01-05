@@ -1,5 +1,5 @@
 <?php
-
+require_once 'autoload.inc.php';
 
 class Module extends Entity
 {
@@ -64,6 +64,31 @@ class Module extends Entity
         $this->dateFin = $dateFin;
         $this->coefficient = $coefficient;
         $this->_id = $id_module;
+    }
+
+    /**
+     * @param int $id
+     * @return Module[]
+     * @throws Exception
+     */
+    public static function getFromEtudiantId(int $id) : array
+    {
+        $stmtModule = MyPDO::getInstance()->prepare(<<<SQL
+            SELECT m.ID_MODULE as _id,
+                   LIB_MODULE as libele,
+                   DATE_DEB_MODULE as dateDeb,
+                   DATE_FIN_MODULE as dateFin,
+                   COEFFICIENT as coefficient
+            FROM MODULE m
+                JOIN inscrire i on m.id_module = i.id_module 
+            WHERE etudiant_id_pers = ?
+SQL
+        );
+        // execute module query
+        $stmtModule->setFetchMode(PDO::FETCH_CLASS, Module::class);
+        $stmtModule->execute([$id]);
+
+        return $stmtModule->fetchAll();
     }
 
     /**
@@ -172,6 +197,7 @@ SQL
 
     /**
      * @return Etudiant[] | null
+     * @throws Exception
      */
     public function getEtudiants() : ?array
     {

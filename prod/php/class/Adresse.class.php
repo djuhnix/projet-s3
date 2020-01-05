@@ -88,12 +88,8 @@ SQL
         );
         $stmt->setFetchMode(PDO::FETCH_CLASS, Adresse::class);
         $stmt->execute([$id]);
-        $object = $stmt->fetchAll();
-        if (false === $object) {
-            throw new Exception('Aucunne Adresse avec l\'identifiant d\'entreprise : '.$id);
-        }
 
-        return $object;
+        return $stmt->fetchAll();
     }
 
     /**
@@ -115,12 +111,8 @@ SQL
         );
         $stmt->setFetchMode(PDO::FETCH_CLASS, Adresse::class);
         $stmt->execute([$id]);
-        $object = $stmt->fetchAll();
-        if (false === $object) {
-            throw new Exception('Aucunne Adresse avec l\'identifiant d\'utilisateurs : '.$id);
-        }
 
-        return $object;
+        return $stmt->fetchAll();
     }
 
     /**
@@ -206,6 +198,7 @@ SQL
 
     /**
      * @return Entreprise|null
+     * @throws Exception
      */
     public function getEntreprise(): ?Entreprise
     {

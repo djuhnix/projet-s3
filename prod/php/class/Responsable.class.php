@@ -20,11 +20,14 @@ class Responsable extends User
         return $this->id_entreprise ;
     }
 
-  /**
+    /**
      * Fonction de validation du couple Login/mot de passe.
-     * @param array $data 
+     * @param array $data
      *
      * @return Responsable utilisateur authentifié
+     * @throws AuthenticationException
+     * @throws SessionException
+     * @throws Exception
      */
     public static function createFromAuthSHA512(array $data)  {
         if (!isset($data['code'])) {
@@ -59,9 +62,10 @@ SQL
 
     /**
      * Lecture de l'objet User dans la session
-     * @throws NotInSessionException si l'objet n'est pas dans la session
-     *
      * @return etudiant
+     * @throws SessionException
+     *
+     * @throws NotInSessionException si l'objet n'est pas dans la session
      */
     static public function createFromSession() : self {
         Session::start() ;

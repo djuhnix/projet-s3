@@ -158,6 +158,7 @@ SQL
         // execute stage query
         $stmt->setFetchMode(PDO::FETCH_CLASS, Stage::class);
         $stmt->execute([$id]);
+
         return $stmt->fetchAll();
     }
     /**
@@ -225,7 +226,9 @@ SQL
     }
 
     /**
+     * @param $id
      * @return Etudiant[]
+     * @throws Exception
      */
     public function getEtudiants($id) : array
     {

@@ -77,6 +77,7 @@ SQL
     }
 
     /**
+     * @param int $id
      * @return self[]
      * @throws Exception
      */
@@ -122,8 +123,11 @@ SQL
         */
         return $stmt->fetchAll();
     }
+
     /**
+     * @param $id
      * @return Etudiant[]
+     * @throws Exception
      */
     public function getEtudiants($id) : array
     {

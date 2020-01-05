@@ -119,6 +119,7 @@ abstract class Travaux extends Entity
 
     /**
      * @return Proposition[]
+     * @throws Exception
      */
     abstract public function getPropositions(): array;
 
