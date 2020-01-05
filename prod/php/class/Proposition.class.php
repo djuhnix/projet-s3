@@ -49,7 +49,6 @@ class Proposition extends Entity
         $this->acceptee = $acceptee;
     }
 
-
     public static function createFromId(int $id)
     {
         $stmt = MyPDO::getInstance()->prepare(<<<SQL

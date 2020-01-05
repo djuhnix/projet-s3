@@ -131,7 +131,6 @@ SQL
         $stmt->setFetchMode(PDO::FETCH_CLASS, Stage::class);
         $stmt->execute([$id]);
         return $stmt->fetchAll();
-
     }
     /**
      * @param string $id L'identifiant de l'entreprise

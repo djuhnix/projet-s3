@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* Nom de SGBD :  MySQL 5.0                                     */
-/* Date de cr�ation :  04/01/2020 18:34:59                      */
+/* Date de cr�ation :  05/01/2020 18:02:05                      */
 /*==============================================================*/
 
 
@@ -55,9 +55,10 @@ create table utilisateur
    lastname             varchar(25)  comment '',
    genre                varchar(1)  comment '',
    datenaisssance       date  comment '',
+   phone                varchar(25)  comment '',
    mail                 varchar(100)  comment '',
    login                varchar(25) not null  comment '',
-   sha512pass           varchar(25) not null  comment '',
+   sha512pass           varchar(500) not null  comment '',
    primary key (id_pers)
 )
 auto_increment = 1;
@@ -230,11 +231,11 @@ auto_increment = 1;
 create table inscrire
 (
    id_module            varchar(5) not null  comment '',
-   id_pers              int(10) not null  comment '',
+   etudiant_id_pers     int(10) not null  comment '',
    note_cc              decimal(4)  comment '',
    note_tp              decimal(4)  comment '',
-   primary key (id_module, id_pers),
-   constraint fk_inscrire_inscrire2_etudiant foreign key (id_pers)
+   primary key (id_module, etudiant_id_pers),
+   constraint fk_inscrire_inscrire2_etudiant foreign key (etudiant_id_pers)
       references etudiant (id_pers) on delete restrict on update restrict,
    constraint fk_inscrire_inscrire_module foreign key (id_module)
       references module (id_module) on delete restrict on update restrict

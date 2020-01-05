@@ -44,7 +44,7 @@ abstract class Entity
 
     /**
      * Accesseur à toutes les lignes de la table correspondantes.
-     *
+     * A utilisé avec précaution.
      * @return self[]
      * @throws Exception
      */
