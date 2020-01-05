@@ -5,6 +5,20 @@ require_once('autoload.include.php') ;
 
 class Professeur extends User
 {
+   /**
+    * Identifiant unique du User dans la base de données
+    * @var string $idProf
+    */
+    protected $num_prof = null ;
+
+    /**
+     * Accesseur sur le num_prof de l'Utilisateur
+     *
+     * @return int num_prof
+     */
+    public function getNumProf() {
+        return $this->num_prof ;
+    }
 
 
   /**
@@ -22,10 +36,10 @@ class Professeur extends User
         // Préparation : 
         $stmt = MyPDO::getInstance();
         $stmt = $stmt->prepare(<<<SQL
-    SELECT id, firstName, lastName, login, phone, mail, DATE_FORMAT(dateNaissance, '%d %m %Y')
-    FROM user, professeur
+    SELECT utilisateur.id_pers, firstName, lastName, login, mail, DATE_FORMAT(datenaisssance, '%d %m %Y')
+    FROM utilisateur, professeur
     WHERE SHA2(CONCAT(sha512pass, :challenge, SHA2(login, 512)), 512) = :code
-    AND id = professeur.N_PERS
+    AND utilisateur.id_pers = professeur.id_pers
 SQL
     ) ;
 
@@ -64,7 +78,7 @@ SQL
 
     public function isAdmin() : bool {
         $res = false;
-        if ($this->id == 0){ $res = true; }
+        if ($this->id_pers == 0){ $res = true; }
         return $res;
     }    
 

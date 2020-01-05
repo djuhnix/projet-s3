@@ -2,7 +2,7 @@
 require_once('autoload.include.php') ;
 
 try {
-$u = Entreprise::createFromSession() ;
+$u = Responsable::createFromSession() ;
 
 $log = "http://{$_SERVER['SERVER_NAME']}/".dirname($_SERVER['PHP_SELF'])."/form.php?logout";
 

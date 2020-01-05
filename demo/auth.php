@@ -19,7 +19,7 @@ try {
             break;
         
         case 's':
-            $user = Entreprise::createFromAuthSHA512($_REQUEST) ;
+            $user = Responsable::createFromAuthSHA512($_REQUEST) ;
             $user->saveIntoSession() ;
             $p->appendToHead("<meta http-equiv='refresh' content='3; URL=entreprises.php'>");
             break;

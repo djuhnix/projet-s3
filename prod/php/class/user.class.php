@@ -15,7 +15,7 @@ abstract class User extends Entity {
      * Identifiant unique du User dans la base de données
      * @var string $id
      */
-    protected $id = null ;
+    protected $id_pers = null ;
 
     /**
      * Nom
