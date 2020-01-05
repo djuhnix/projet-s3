@@ -168,14 +168,14 @@ SQL
                    Description as descritpion,
                    acceptee as acceptee
             FROM PROPOSITION
-            WHERE id_stage = ?
+            WHERE id_projet = ?
 SQL
         );
         $stmt->setFetchMode(PDO::FETCH_CLASS, Proposition::class);
         $stmt->execute([$id]);
         $object = $stmt->fetchAll();
         if (false === $object) {
-            throw new Exception('Aucunne Proposition de stage avec l\'identifiant de stage : '.$id);
+            throw new Exception('Aucunne Proposition de projet avec l\'identifiant : '.$id);
         }
 
         return $object;
