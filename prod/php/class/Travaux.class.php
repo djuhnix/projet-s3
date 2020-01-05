@@ -47,6 +47,7 @@ abstract class Travaux extends Entity
 
     /**
      * @return Professeur|null
+     * @throws Exception
      */
     public function getProfesseur(): ?Professeur
     {
@@ -56,6 +57,12 @@ abstract class Travaux extends Entity
         }
         return $this->professeur;
     }
+
+    /**
+     * @param int $id
+     * @return self[]
+     */
+    abstract public static function getFromProfesseurId(int $id) : array;
 
     /**
      * @param Professeur|null $professeur
@@ -114,11 +121,6 @@ abstract class Travaux extends Entity
      * @return Proposition[]
      */
     abstract public function getPropositions(): array;
-
-    /**
-     * @return self[]
-     */
-    abstract static public function getAll(): array;
 
 
 

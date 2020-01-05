@@ -4,6 +4,11 @@
 
 class Projet extends Travaux
 {
+    /**
+     * @var Etudiant[] $etudiants
+     */
+    private $etudiants;
+
     /** @noinspection PhpMissingParentConstructorInspection */
     public function __construct(
         string $libele,
@@ -55,6 +60,30 @@ SQL
         return $projet;
     }
 
+    /**
+     * @param int $id
+     * @return self[]
+     * @throws Exception
+     */
+    public static function getFromProfesseurId(int $id) : array
+    {
+        $stmt = MyPDO::getInstance()->prepare(<<<SQL
+            SELECT id_projet as _id,
+                   professeur_id_pers as idProfesseur,
+                   lib_projet as libele,
+                   date_deb_projet as dateDeb,
+                   date_fin_projet as dateFin
+            FROM projet
+            WHERE professeur_id_pers = ?
+SQL
+        );
+        // execute projet query
+        $stmt->setFetchMode(PDO::FETCH_CLASS, Projet::class);
+        $stmt->execute([$id]);
+        return $stmt->fetchAll();
+    }
+
+    /*
     public function supprimer(int $id)
     {
         $stmt = MyPDO::getInstance()->prepare(<<<SQL
@@ -63,28 +92,31 @@ SQL
 SQL
         );
         $stmt->execute([$id]);
-    }
+    }*/
 
     /**
      * {@inheritdoc}
      */
     public function getPropositions(): array
     {
-        if (null == $this->propositions) {
-            $stmtProp = MyPDO::getInstance()->prepare(<<<SQL
-            SELECT ID_PROPOSITION as _id,
-                   DESCRIPTION as description
-            FROM PROPOSITION
-            WHERE ID_PROJET = ?
-SQL
-            );
-
-            $stmtProp->execute([$this->_id]);
-            $stmtProp->setFetchMode(PDO::FETCH_CLASS, Proposition::class);
-            $this->propositions = $stmtProp->fetchAll();
+        if (null == $this->propositions)
+        {
+            $this->propositions = Proposition::getFromProjetId($this->_id);
         }
 
         return $this->propositions;
+    }
+
+    /**
+     * @return Etudiant[]
+     */
+    public function getEtudiants($id) : array
+    {
+        if ($this->etudiants === null)
+        {
+            $this->etudiants = Etudiant::getFromProjetId($id);
+        }
+        return $this->etudiants;
     }
 
     /*

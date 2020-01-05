@@ -10,6 +10,12 @@ class Proposition extends Entity
      * @var string
      */
     private $description;
+
+    /**
+     * @var Etudiant[] $etudiants
+     */
+    private $etudiants;
+
     /**
      * @var bool
      */
@@ -70,6 +76,63 @@ SQL
         return $object;
     }
 
+    /**
+     * @return self[]
+     * @throws Exception
+     */
+    public static function getFromEtudiantId(int $id) : array
+    {
+        $stmt = MyPDO::getInstance()->prepare(
+            <<<SQL
+            SELECT p.id_proposition
+            FROM proposition p 
+                JOIN etudiant_candidater ec on p.id_proposition = ec.id_proposition
+            WHERE etudiant_id_pers = ?
+SQL
+        );
+        $stmt->setFetchMode(PDO::FETCH_CLASS, Proposition::class);
+        $stmt->execute([$id]);
+        return $stmt->fetchAll();
+    }
+
+    /**
+     * @return Proposition[]
+     * @throws Exception
+     */
+    public function getAccepted() : array
+    {
+        $stmt = MyPDO::getInstance()->prepare(<<<SQL
+            SELECT ID_PROPOSITION as _id,
+                   Description as descritpion,
+                   acceptee as acceptee,
+                   id_projet as idProjet,
+                   id_stage as idStage
+            FROM PROPOSITION
+            WHERE acceptee = true
+SQL
+        );
+        $stmt->setFetchMode(PDO::FETCH_CLASS, Proposition::class);
+        $stmt->execute();
+        /*
+        $accepted = [];
+        while( ($object = $stmt->fetch()) != false)
+        {
+            $accepted[] = $object;
+        }
+        */
+        return $stmt->fetchAll();
+    }
+    /**
+     * @return Etudiant[]
+     */
+    public function getEtudiants($id) : array
+    {
+        if ($this->etudiants === null)
+        {
+            $this->etudiants = Etudiant::getFromPropositionId($id);
+        }
+        return $this->etudiants;
+    }
     /**
      * @return int
      */

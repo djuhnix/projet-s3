@@ -24,6 +24,10 @@ class Stage extends Travaux
      * @var int $idResponsable
      */
     private $idResponsable;
+    /**
+     * @var Etudiant[] $etudiants
+     */
+    private $etudiants = null;
 
     /**
      * Stage constructor.
@@ -109,11 +113,11 @@ SQL
     }
 
     /**
-     * @param string $id L'identifiant du professeur
+     * @param int $id L'identifiant du professeur
      * @return Stage[]
      * @throws Exception
      */
-    public static function getFromProfesseurId(string $id) : array
+    public static function getFromProfesseurId(int $id) : array
     {
         $stmt = MyPDO::getInstance()->prepare(<<<SQL
             SELECT id_stage as _id,
@@ -183,6 +187,7 @@ SQL
 
     /**
      * @return Entreprise
+     * @throws Exception
      */
     public function getEntreprise(): Entreprise
     {
@@ -217,6 +222,18 @@ SQL
             $this->propositions = Proposition::getFromStageId($this->_id);
         }
         return $this->propositions;
+    }
+
+    /**
+     * @return Etudiant[]
+     */
+    public function getEtudiants($id) : array
+    {
+        if ($this->etudiants === null)
+        {
+            $this->etudiants = Etudiant::getFromStageId($id);
+        }
+        return $this->etudiants;
     }
 
     /**
