@@ -7,6 +7,7 @@
  */
 require_once 'autoload.inc.php';
 
+$u = User::createFromSession() ;
 
 $tabNote=Note::getAll();
 $p= new WebPage();
@@ -15,7 +16,7 @@ $p->appendContent(<<<HTML
 <div class="container">
     <nav class="navbar md-content-center justify-content-center">
     <h1 class="w3-third">
-        
+        <h1> Etudiant  {$u->firstName()} {$u->lastName()}</h1>
     </h1>
     <div>
     <table>
