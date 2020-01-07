@@ -1,0 +1,47 @@
+	#div1, #div2, #div3{
+    		box-sizing: border-box;
+    		}
+
+    	#validation_date {
+    		float: left;
+  			width: 90px;
+  			height: 30px;
+  			margin: 10px;
+  			padding: 10px;
+  			border: 1px solid black;
+  			
+    	}
+
+    	#retour_de_validation {
+    		float: left;
+  			width: 500px;
+  			height: 500px;
+        margin: 10px;
+  			padding: 10px;
+  			border: 1px solid black;
+  			
+    	}
+
+    	.section1 {
+    		float: bottom;
+    		float: left;
+    		width: 50%;
+    	}
+
+    	.section2{
+    		float: bottom;
+    		float: right;
+        width: 50%;
+    		clear: right;
+        }
+
+	    #Formulaire{
+          display: inline-block;
+          float: bottom;
+          float: left;
+          }
+
+      #barre_de_sélection {
+          display: block;
+      }
+	
