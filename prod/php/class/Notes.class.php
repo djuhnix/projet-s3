@@ -33,11 +33,11 @@ class Note extends Entity
 	private $noteTP;
 
 	/**
-	 * @param int $id
-	 * @return Note
+	 * @param int $idModule
+	 * @return array
 	 * @throws Exception
 	 */
-	public static function createFromId(int $idModule) : Note
+	public static function createFromId(int $idModule) : array
 	{
 		$stmt = MyPDO::getInstance()->prepare(<<<SQL
             SELECT  ID_MODULE as idModule,
@@ -45,12 +45,12 @@ class Note extends Entity
                     note_cc as noteCC,
                     note_tp as noteTP
             FROM inscrire i
-            WHERE 
+            WHERE id_module= ? 
 SQL
 		);
 		// execute module query
 		$stmt->setFetchMode(PDO::FETCH_CLASS, Note::class);
-		$stmt->execute([$id]);
+		$stmt->execute([$idModule]);
 
 		return $stmt->fetchAll();
 	}
@@ -68,7 +68,7 @@ SQL
                     note_cc as noteCC,
                     note_tp as noteTP
             FROM inscrire i  JOIN Module m on m.id_module = i.id_module
-            WHERE id_module = ?
+            WHERE m.id_module = ?
 SQL
 		);
 		$stmt->setFetchMode(PDO::FETCH_CLASS, Note::class);
@@ -82,7 +82,7 @@ SQL
 	 * @return Etudiant[]
 	 * @throws Exception
 	 */
-	public function getFromEtudiantId(int $id)
+	public function getFromEtId(int $id)
 	{
 		$stmt = MyPDO::getInstance()->prepare(<<<SQL
             SELECT id_module as idModule,
@@ -101,31 +101,39 @@ SQL
 
 	public function getTitleModule():string
 	{
-		return $this->$libele;
+		return $this->module;
 	}
 
 	public function getNoteCc():float
 	{
-		return $this->noteCc;
+		return $this->noteCC;
 	}
 	public function getNoteTP():float
 	{
 		return $this->noteTP;
 	}
-	public function setNoteCc($nouvelNote):void
-	{
-		$this->noteCc=$nouvellNote;
-	}
-	public function setNoteTP($nouvelNote):void
-	{
-		$this->noteTP=$nouvelNote;
-	}
+
 	public function getMoyenne():float
 	{
 		$val=$this->noteCC;
 		$val2=$this>noteTP;
 		$moyenne=($val+$val2)/2;
 		return $moyenne;
+	}
+	/**
+	 * @return Module
+	 */
+	public function getModule(): Module
+	{
+		return $this->module;
+	}
+	public function setNoteCC(float $note2):void
+	{
+		$this->noteCC=$note2;
+	}
+	public function setNoteTP($note2):void
+	{
+		$this->noteTP=$note2;
 	}
 
 	public function persist(): bool
@@ -168,6 +176,14 @@ SQL
 		return $stmt->fetchAll();
 	}
 
+	/**
+	 * @return Note[]
+	 * @throws Exception
+	 */
+	public static function Afficher() : string
+	{
+
+	}
 
 
 }
