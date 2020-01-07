@@ -1,7 +1,5 @@
 <?php
 require_once('autoload.include.php') ;
-require_once('MyPDO.template.php') ;
-require_once('MyPDO.class.php') ;
 
 class AuthenticationException extends Exception { }
 
@@ -64,7 +62,7 @@ abstract class User extends Entity {
     private function __construct() {
     }
 
-    protected static function createFromId(int $id){
+    public static function createFromId(int $id){
         // voir createFromSession ou createFromAuth512
     }
     

@@ -1,4 +1,5 @@
 <?php
+require_once('autoload.include.php') ;
 
 /**
  * Classe WebPage permettant de ne plus écrire l'enrobage HTML lors de la création d'une page Web.

@@ -33,7 +33,7 @@ try {
         default:
             $p->appendToHead(<<<HTML
                 <meta http-equiv="refresh" content="1; URL=index.html">
-            HTML
+HTML
             ) ;
             break;
     }

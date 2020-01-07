@@ -1,4 +1,5 @@
 <?php
+require_once('autoload.include.php') ;
 
 class SessionException extends Exception {
 }
