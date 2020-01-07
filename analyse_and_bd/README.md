@@ -34,19 +34,20 @@ II- Diagrammes de classes
 Voici notre diagramme le diagramme de classe issue de l'analyse de
 la base de données et du diagramme de cas d'utilisation.
 
-*Une première version* :
+
 <div style="text-align: center">
+<em>Une première version</em> :
     <img alt="Diagramme de classe" src="uml/diag_class.png" width="700" />
 </div>
 
-*Une seconde version avec plus de détails dans le prototype des méthodes* :
 <div style="text-align: center">
+<em>Une seconde version avec plus de détails dans le prototype des méthodes</em> :
     <img alt="Diagramme de classe méthodes détaillées" src="uml/class.png" width="700" />
 </div>
 
 III- Script de la base
 ----------------------
-
+*En annexe*
 ```mysql
 /*==============================================================*/
 /* Génération par Powerdesigner 16.6                            */
