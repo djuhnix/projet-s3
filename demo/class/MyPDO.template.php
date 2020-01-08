@@ -4,8 +4,12 @@
 /* Exemple de configuration et d'utilisation*/
 require_once 'MyPDO.class.php';
 
-MyPDO::setConfiguration('mysql:host=localhost;dbname=projets3;charset=utf8', 'webacces', 'master');
-MyPDO::setConfiguration('mysql:host=mysql;dbname=infs3_prj09;charset=utf8', 'infs3_prj09', 'zTi14!BHgQd9');
+//MyPDO::setConfiguration('mysql:host=localhost;dbname=projets3;charset=utf8', 'webacces', 'master');
+//MyPDO::setConfiguration('mysql:host=mysql;dbname=infs3_prj09;charset=utf8', 'infs3_prj09', 'zTi14!BHgQd9');
+MyPDO::setConfiguration(
+    'mysql:host=localhost;dbname=infs3_prj09;charset=utf8',
+    'root',
+    '');
 /*
 $stmt = MyPDO::getInstance()->prepare(<<<SQL
     SELECT id, name

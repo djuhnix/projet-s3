@@ -1,98 +1,115 @@
 <?php
-require_once('autoload.include.php') ;
-require_once('MyPDO.template.php') ;
-require_once('MyPDO.class.php') ;
 
-class AuthenticationException extends Exception { }
+require_once 'autoload.inc.php';
 
-class NotInSessionException extends Exception { }
+class AuthenticationException extends Exception
+{
+}
+
+class NotInSessionException extends Exception
+{
+}
 
 /**
-* Class Utilisateur liant la Platform à la BD.
-*/
-abstract class User extends Entity {
+ * Class Utilisateur liant la Platform à la BD.
+ */
+abstract class User extends Entity
+{
     /**
-     * Identifiant unique du User dans la base de données
-     * @var string $id
+     * Identifiant unique du User dans la base de données.
+     *
+     * @var string
      */
-    protected $id_pers = null ;
+    protected $id_pers = null;
 
     /**
-     * Nom
-     * @var string $lastName
+     * Nom.
+     *
+     * @var string
      */
-    protected $lastName  = null ;
+    protected $lastName = null;
 
     /**
-     * Prénom
-     * @var string $firstName
+     * Prénom.
+     *
+     * @var string
      */
-    protected $firstName = null ;
+    protected $firstName = null;
 
     /**
-     * Login
-     * @var string $login
+     * Login.
+     *
+     * @var string
      */
-    protected $login     = null ;
+    protected $login = null;
 
     /**
-     * Numéro de téléphone
-     * @var string $phone
+     * Numéro de téléphone.
+     *
+     * @var string
      */
-    protected $phone     = null ;    
-    
+    protected $phone = null;
+
     /**
-    * Adresse E-mail
-    * @var string $mail
-    */
-    protected $mail     = null ;    
-    
+     * Adresse E-mail.
+     *
+     * @var string
+     */
+    protected $mail = null;
+
     /**
-    * Date de naissance
-    * @var string $dateNaissance
-    */
-   protected $dateNaissance     = null ;
+     * Date de naissance.
+     *
+     * @var string
+     */
+    protected $dateNaissance = null;
 
     /**
      * Clé de session.
      */
-    const session_key = "__user__" ;
+    const session_key = '__user__';
 
     /**
      * Constructeur privé pour éviter de l'instancier.
      */
-    private function __construct() {
+    private function __construct()
+    {
     }
 
-    protected static function createFromId(int $id){
+    public static function createFromId(int $id)
+    {
         // voir createFromSession ou createFromAuth512
     }
-    
-    protected static function getAll() : array{
+
+    protected static function getAll(): array
+    {
         // TODO
     }
-    
-    public function persist(): bool{
+
+    public function persist(): bool
+    {
         // voir saveIntoSessio
     }
 
     /**
-     * Accesseur sur le prénom de l'Utilisateur
+     * Accesseur sur le prénom de l'Utilisateur.
      *
      * @return string prénom
      */
-    public function firstName() : string {
-        return $this->firstName ;
+    public function firstName(): string
+    {
+        return $this->firstName;
     }
 
     /**
-     * retourne les informations de l'utilisateur
+     * retourne les informations de l'utilisateur.
      *
-     * @return string code HTML.
+     * @return string code HTML
      */
-    public function profile() : string {
-            // Affichage
-            return <<<HTML
+    public function profile(): string
+    {
+        // Affichage
+        return <<<HTML
     <div><span>Nom      </span> : <span>{$this->lastName} </span></div>
     <div><span>Prénom   </span> : <span>{$this->firstName}</span></div>
     <div><span>Login    </span> : <span>{$this->login}    </span></div>
@@ -108,7 +125,7 @@ HTML;
      * @param string $submitText texte du bouton d'envoi
      *
      * @return string code HTML du formulaire
-     
+
     static public function loginForm(string $action, string $submitText = 'OK') : string {
         return <<<HTML
   <div class="p-2 row-xs-12 col-lg-3 center">
@@ -144,7 +161,7 @@ HTML;
                 </div>
                 <button type="submit" class="btn btn-primary input-form" id="loginbtn">{$submitText}</button>
 
-            </form> 
+            </form>
             <footer class="page-copyright">
             </footer>
             </div>
@@ -189,15 +206,18 @@ HTML;
     }
     */
 
-/**
-     * Formulaire de déconnexion de l'utilisateur
-     * @param string $text bouton de déconnexion
+    /**
+     * Formulaire de déconnexion de l'utilisateur.
+     *
+     * @param string $text   bouton de déconnexion
      * @param string $action URL (action) vers la cible du formulaire
      *
-     * @return string Code HTML du formulaire.
+     * @return string code HTML du formulaire
      */
-    public static function logoutForm(string $action, string $text) : string {
-        $text = htmlspecialchars($text, ENT_COMPAT, 'utf-8') ;
+    public static function logoutForm(string $action, string $text): string
+    {
+        $text = htmlspecialchars($text, ENT_COMPAT, 'utf-8');
+
         return <<<HTML
     <form action='$action' method='POST'>
     
@@ -206,48 +226,53 @@ HTML;
     </form>
 HTML;
     }
-    
 
     /**
      * Deconnexion : arret de la session en cours.
      */
-    public static function logoutIfRequested() : void {
+    public static function logoutIfRequested(): void
+    {
         if (isset($_REQUEST['logout'])) {
-            Session::start() ;
-            unset($_SESSION[self::session_key]) ;
+            Session::start();
+            unset($_SESSION[self::session_key]);
         }
     }
 
     /**
      * Verrification du statut de la session en cours.
      *
-     * @return bool True si l'uttilisateur est connecté correctement.
+     * @return bool true si l'uttilisateur est connecté correctement
      */
-    static public function isConnected() : bool {
-        Session::start() ;
-        return (   isset($_SESSION[self::session_key]['connected'])
+    public static function isConnected(): bool
+    {
+        Session::start();
+
+        return (isset($_SESSION[self::session_key]['connected'])
                 && $_SESSION[self::session_key]['connected'])
-            || (   isset($_SESSION[self::session_key]['user'])
-                && $_SESSION[self::session_key]['user'] instanceof self) ;
+            || (isset($_SESSION[self::session_key]['user'])
+                && $_SESSION[self::session_key]['user'] instanceof self);
     }
 
     /**
      * Sauvegarde de l'objet Utilisateur dans la session en cours.
      */
-    public function saveIntoSession() : void {
+    public function saveIntoSession(): void
+    {
         // Mise en place de la session
-        Session::start() ;
+        Session::start();
         // Mémorisation de l'Utilisateur
-        $_SESSION[self::session_key]['user'] = $this ;
+        $_SESSION[self::session_key]['user'] = $this;
     }
 
     /**
-     * Lecture de l'objet User dans la session
+     * Lecture de l'objet User dans la session.
+     *
      * @throws NotInSessionException si l'objet n'est pas dans la session
      *
      * @return User
      */
-    abstract static public function createFromSession() ;
+    abstract public static function createFromSession();
+
     /*{
         Session::start() ;
         if (isset($_SESSION[self::session_key]['user'])) {
@@ -260,32 +285,38 @@ HTML;
         throw new NotInSessionException() ;
     }*/
 
-    static public function randString($length = 16) {
+    public static function randString($length = 16)
+    {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
-        for ($i = 0; $i < $length; $i++) {
+        for ($i = 0; $i < $length; ++$i) {
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
+
         return $randomString;
     }
 
     /**
-     * Production d'un formulaire de connexion contenant un challenge. 
+     * Production d'un formulaire de connexion contenant un challenge.
+     *
      * @param string $action URL cible du formulaire
+     * @param string $logo
      * @param string $submitText texte du bouton d'envoi
      *
      * @return string code HTML du formulaire
+     *
+     * @throws SessionException
      */
-    static public function loginFormSHA512(string $action, string $submitText = 'OK') : string {
-        $texte_par_defaut = 'login' ;
-        Session::start() ;
+    public static function loginFormSHA512(string $action, string $logo, string $submitText = 'OK'): string
+    {
+        $texte_par_defaut = 'login';
+        Session::start();
 
-        $_SESSION[self::session_key]['challenge'] = Self::randString(16) ;
+        $_SESSION[self::session_key]['challenge'] = self::randString(16);
 
         return <<<HTML
-<script type='text/javascript' src='sha512.js'></script>
-<script type='text/javascript'>
+<script type='javascript'>
 function crypter(f, challenge) {
     if (f.login.value.length && f.pass.value.length) {
         f.code.value = CryptoJS.SHA512(CryptoJS.SHA512(f.pass.value).toString()+challenge+CryptoJS.SHA512(f.login.value).toString()).toString() ;
@@ -301,10 +332,10 @@ function crypter(f, challenge) {
         <div class="p-2 row-xs-12 col-lg-3 center">
             <div class="center">
                 <div>
-                    <img src="images/logo_urca.png">
+                    <img src="$logo">
                 </div>
                 <form class="w-p100 form-align center-block" name='auth' action='$action' method='POST' onSubmit="return crypter(this, '{$_SESSION[self::session_key]['challenge']}')" autocomplete='off' id="login">
-                    <input type="hidden" name="anchor" value="">
+                    <input id="anchor" type="hidden" name="anchor" value="">
                     <script>document.getElementById('anchor').value = location.hash;</script>
                     
                     <div class="form-group input-lg input-form ">
@@ -316,7 +347,7 @@ function crypter(f, challenge) {
                     
                     <div class="form-group input-lg input-form">
                         <label for="password" class="sr-only">Mot de passe</label>
-                        <input type="password" name="pass" id="password" value="" class="form-control"placeholder="Mot de passe">
+                        <input type="password" name="pass" id="password" value="" class="form-control" placeholder="Mot de passe">
                     </div>
                     
                     <div class="form-group">
@@ -339,7 +370,7 @@ function crypter(f, challenge) {
             <aside id="fh5co-hero" class="js-fullheight">
                 <div class="flexslider js-fullheight">
                     <ul class="slides">
-                    <li style="background-image: url(images/img_bg_1.jpg);">
+                    <li style="background-image: url(img/img-1.jpg);">
                         <div class="overlay"></div>
                         <div class="container-fluid">
                             <div class="row">
@@ -353,7 +384,7 @@ function crypter(f, challenge) {
                             </div>
                         </div>
                     </li>
-                    <li style="background-image: url(images/img_bg_2.jpg);">
+                    <li style="background-image: url(img/img-2.jpg);">
                         <div class="overlay"></div>
                         <div class="container-fluid">
                             <div class="row">
@@ -367,7 +398,7 @@ function crypter(f, challenge) {
                             </div>
                         </div>
                     </li>
-                    <li style="background-image: url(images/img_bg_3.jpg);">
+                    <li style="background-image: url(img/img-3.jpg);">
                         <div class="overlay"></div>
                         <div class="container-fluid">
                             <div class="row">
@@ -391,21 +422,20 @@ function crypter(f, challenge) {
 HTML;
     }
 
-
     /**
      * Fonction de validation du couple Login/mot de passe.
-     * @param array $data 
      *
      * @return User utilisateur authentifié
      */
-    abstract public static function createFromAuthSHA512(array $data)  ;
+    abstract public static function createFromAuthSHA512(array $data);
+
     /*{
         if (!isset($data['code'])) {
             throw new AuthenticationException("pas de login/pass fournis") ;
         }
 
         Session::start() ;
-        // Préparation : 
+        // Préparation :
         $stmt = MyPDO::getInstance();
         $stmt = $stmt->prepare(<<<SQL
     SELECT id, firstName, lastName, login, phone, mail, DATE_FORMAT(dateNaissance, '%d %m %Y')
@@ -417,7 +447,7 @@ SQL
         $stmt->execute(array(
             ':challenge' => isset($_SESSION[self::session_key]['challenge']) ? $_SESSION[self::session_key]['challenge'] : '',
             ':code'      => $data['code'])) ;
-        
+
         unset($_SESSION[self::session_key]['challenge']) ;
 
         $stmt->setFetchMode(PDO::FETCH_CLASS, __CLASS__) ;
@@ -429,4 +459,3 @@ SQL
         }
     }*/
 }
-

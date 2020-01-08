@@ -1,33 +1,35 @@
 <?php
-require_once('autoload.include.php') ;
-require_once('MyPDO.template.php') ;
-require_once('MyPDO.class.php') ;
+
+require_once 'autoload.inc.php';
 
 class Etudiant extends User
 {
-
     /**
-     * Identifiant unique du stage dans la base de données relié à l'étudiant
-     * @var int | null $idStage
+     * Identifiant unique du stage dans la base de données relié à l'étudiant.
+     *
+     * @var int | null
      */
-    private $idStage = null ;
+    private $idStage = null;
     /**
-     * Stage unique de l'étudiant
-     * @var Stage | null $stage
+     * Stage unique de l'étudiant.
+     *
+     * @var Stage | null
      */
     private $stage = null;
 
     /**
-     * Identifiant unique du User dans la base de données
-     * @var int | null $idProjet
+     * Identifiant unique du User dans la base de données.
+     *
+     * @var int | null
      */
-    private $idProjet = null ;
+    private $idProjet = null;
     /**
      * @var Projet | null
      */
     private $projet = null;
     /**
-     * Numéro de l'étudiant
+     * Numéro de l'étudiant.
+     *
      * @var int | null
      */
     private $numEtud = null;
@@ -36,17 +38,18 @@ class Etudiant extends User
      */
     private $propositions;
     /**
-     * Modules aux quels est inscrit l'étudiant
-     * @var Module[] $modules
+     * Modules aux quels est inscrit l'étudiant.
+     *
+     * @var Module[]
      */
     private $modules;
 
     /**
-     * @param int $id
      * @return Etudiant[]
+     *
      * @throws Exception
      */
-    public static function getFromStageId(int $id) : array
+    public static function getFromStageId(int $id): array
     {
         $stmt = MyPDO::getInstance()->prepare(
             <<<SQL
@@ -65,11 +68,11 @@ SQL
     }
 
     /**
-     * @param int $id
      * @return Etudiant[]
+     *
      * @throws Exception
      */
-    public static function getFromProjetId(int $id) : array
+    public static function getFromProjetId(int $id): array
     {
         $stmt = MyPDO::getInstance()->prepare(
             <<<SQL
@@ -88,8 +91,8 @@ SQL
     }
 
     /**
-     * @param string $id
      * @return Etudiant[]
+     *
      * @throws Exception
      */
     public static function getFromModuleId(string $id)
@@ -110,9 +113,10 @@ SQL
 
         return $stmt->fetchAll();
     }
+
     /**
-     * @param int $id
      * @return Etudiant[]
+     *
      * @throws Exception
      */
     public static function getFromPropositionId(int $id)
@@ -134,120 +138,116 @@ SQL
         return $stmt->fetchAll();
     }
 
-    /**
-     * @param Stage|null $stage
-     */
     public function setStage(?Stage $stage): void
     {
         $this->stage = $stage;
         $this->idStage = $stage->getId();
     }
 
-    /**
-     * @param Projet|null $projet
-     */
     public function setProjet(?Projet $projet): void
     {
         $this->projet = $projet;
         $this->idProjet = $projet->getId();
     }
 
-    /**
-     * @param int|null $numEtud
-     */
     public function setNumEtud(?int $numEtud): void
     {
         $this->numEtud = $numEtud;
     }
 
-
-
     /**
-     * Accesseur sur le id_stage de l'Utilisateur
+     * Accesseur sur le id_stage de l'Utilisateur.
      *
      * @return int
      */
-    public function getIdStage() {
-        return $this->idStage ;
+    public function getIdStage()
+    {
+        return $this->idStage;
     }
 
     /**
      * @return Stage
+     *
      * @throws Exception
      */
-    public function getStage() : Stage
+    public function getStage(): Stage
     {
-        if($this->stage === null)
-        {
+        if (null === $this->stage) {
             $this->stage = Stage::createFromId($this->idStage);
         }
+
         return $this->stage;
     }
 
     /**
-     * Accesseur sur le id_projet de l'Utilisateur
+     * Accesseur sur le id_projet de l'Utilisateur.
      *
      * @return int
      */
-    public function getIdProjet() {
-        return $this->idProjet ;
+    public function getIdProjet()
+    {
+        return $this->idProjet;
     }
 
     /**
      * @return Projet
+     *
      * @throws Exception
      */
-    public function getProjet() : Projet
+    public function getProjet(): Projet
     {
-        if($this->projet === null)
-        {
+        if (null === $this->projet) {
             $this->projet = Projet::createFromId($this->idStage);
         }
+
         return $this->projet;
     }
 
     /**
      * @return Proposition[]
+     *
      * @throws Exception
      */
-    public function getPropositions() : array
+    public function getPropositions(): array
     {
-        if ($this->propositions === null)
-        {
+        if (null === $this->propositions) {
             $this->propositions = Proposition::getFromEtudiantId($this->_id);
         }
+
         return $this->propositions;
     }
 
     /**
      * @return Module[]
+     *
      * @throws Exception
      */
     public function getModules(): array
     {
-        if ($this->modules === null)
-        {
+        if (null === $this->modules) {
             $this->modules = Module::getFromEtudiantId($this->_id);
         }
+
         return $this->modules;
     }
 
     /**
      * Fonction de validation du couple Login/mot de passe.
-     * @param array $data
      *
      * @return Etudiant utilisateur authentifié
+     *
      * @throws AuthenticationException
      * @throws SessionException
      * @throws Exception
      */
-    public static function createFromAuthSHA512(array $data)  {
+    public static function createFromAuthSHA512(array $data)
+    {
         if (!isset($data['code'])) {
-            throw new AuthenticationException("pas de login/pass fournis") ;
+            throw new AuthenticationException('pas de login/pass fournis');
         }
 
-        Session::start() ;
-        // Préparation : 
+        Session::start();
+        // Préparation :
         $stmt = MyPDO::getInstance();
         $stmt = $stmt->prepare(<<<SQL
     SELECT utilisateur.id_pers, firstName, lastName, login, mail, DATE_FORMAT(datenaisssance, '%d %m %Y'), etudiant.id_stage, etudiant.id_projet
@@ -255,40 +255,40 @@ SQL
     WHERE SHA2(CONCAT(sha512pass, :challenge, SHA2(login, 512)), 512) = :code
     AND utilisateur.id_pers = etudiant.id_pers
 SQL
-        ) ;
+        );
 
-        $stmt->execute(array(
+        $stmt->execute([
             ':challenge' => isset($_SESSION[self::session_key]['challenge']) ? $_SESSION[self::session_key]['challenge'] : '',
-            ':code'      => $data['code'])) ;
+            ':code' => $data['code'], ]);
 
-        unset($_SESSION[self::session_key]['challenge']) ;
+        unset($_SESSION[self::session_key]['challenge']);
 
-        $stmt->setFetchMode(PDO::FETCH_CLASS, __CLASS__) ;
-        if (($utilisateur = $stmt->fetch()) !== false) {
-            return $utilisateur ;
-        }
-        else {
-            throw new AuthenticationException("Login/pass incorrect") ;
+        $stmt->setFetchMode(PDO::FETCH_CLASS, __CLASS__);
+        if (false !== ($utilisateur = $stmt->fetch())) {
+            return $utilisateur;
+        } else {
+            throw new AuthenticationException('Login/pass incorrect');
         }
     }
 
     /**
-     * Lecture de l'objet User dans la session
-     * @return etudiant
-     * @throws SessionException
+     * Lecture de l'objet User dans la session.
      *
+     * @return etudiant
+     *
+     * @throws SessionException
      * @throws NotInSessionException si l'objet n'est pas dans la session
      */
-    static public function createFromSession() : self {
-        Session::start() ;
+    public static function createFromSession(): self
+    {
+        Session::start();
         if (isset($_SESSION[self::session_key]['user'])) {
-            $u = $_SESSION[self::session_key]['user'] ;
+            $u = $_SESSION[self::session_key]['user'];
 
             if (is_object($u) && get_class($u) == get_class()) {
-                return $u ;
+                return $u;
             }
         }
-        throw new NotInSessionException() ;
+        throw new NotInSessionException();
     }
-
 }
