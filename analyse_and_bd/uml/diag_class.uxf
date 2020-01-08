@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
   <help_text>// Uncomment the following line to change the fontsize and font:
 fontsize=12
 // fontfamily=SansSerif //possible: SansSerif,Serif,Monospaced
@@ -27,30 +28,30 @@ fontsize=12
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>276</x>
-      <y>300</y>
+      <x>402</x>
+      <y>426</y>
       <w>120</w>
       <h>114</h>
     </coordinates>
     <panel_attributes>Utilisateur
 --
 - id_u : 	
-- nom_u : string
-- prenom : string
+- firstname : string
+- lastname : string
 - genre : string
 - dateNais : Date
 - mail : string
-- adresse : Adresse
+- login : string
 --
-...</panel_attributes>
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>78</x>
-      <y>474</y>
-      <w>126</w>
+      <x>234</x>
+      <y>426</y>
+      <w>132</w>
       <h>114</h>
     </coordinates>
     <panel_attributes>Etudiant
@@ -62,50 +63,50 @@ fontsize=12
 - candidature : Candidature[]
 --
 + createFromId(string id) : Etudiant
-+ getAllNote() : Note[]
-+ getNote(string id_module,string type) : int
 + setNote(string id_module) : void
-_+ getAllStudent() : Etudiant[]_</panel_attributes>
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>102</x>
-      <y>240</y>
-      <w>102</w>
-      <h>84</h>
+      <x>420</x>
+      <y>144</y>
+      <w>150</w>
+      <h>114</h>
     </coordinates>
     <panel_attributes>Note
 --
 - id_module : string
-- noteTPS : float
+- id_pers : int
+- noteTP : float
 - noteCC : float
 --
 + get()
-+ setValeur(float val)
++ set(float val)
 + calculerMoyenne()
-_+ getAll() : Note[]_</panel_attributes>
++ getFromModuleId(string idModule) : Note[]
++ getFromUserId(int idEtud) : Note[]</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>120</x>
-      <y>408</y>
-      <w>210</w>
-      <h>78</h>
+      <x>438</x>
+      <y>534</y>
+      <w>18</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>330.0;10.0;330.0;70.0;10.0;70.0;10.0;110.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0;10.0;140.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>264</x>
-      <y>468</y>
-      <w>132</w>
-      <h>114</h>
+      <x>48</x>
+      <y>348</y>
+      <w>138</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>Professeur
 --
@@ -121,19 +122,19 @@ _+ getAll() : Note[]_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>312</x>
-      <y>408</y>
-      <w>18</w>
-      <h>72</h>
+      <x>360</x>
+      <y>480</y>
+      <w>54</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;70.0;10.0;100.0</additional_attributes>
+    <additional_attributes>70.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>90</x>
-      <y>18</y>
+      <x>210</x>
+      <y>0</y>
       <w>204</w>
       <h>126</h>
     </coordinates>
@@ -141,10 +142,8 @@ _+ getAll() : Note[]_</panel_attributes>
 --
 - id_module : string
 - libele : string
-- description : string
-- dateDebut : Date
-- dateFin : Date
-- coefficient : float
+- code : string
+- nature : string
 --
 + get()
 + setDateDebut(Date dateDeb) : void
@@ -156,65 +155,8 @@ _+ supprimerModule(string id) : void_</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>924</x>
-      <y>294</y>
-      <w>162</w>
-      <h>108</h>
-    </coordinates>
-    <panel_attributes>Proposition
---
-
-- description : string
-
---
-+ get()
-+ getAcceptedStudent() : Etudiant
-+ isAccepted() : bool
-+ setAcceptee(bool acceptee)
-_+ getAllCandidature() : Candidature[]_</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>978</x>
-      <y>474</y>
-      <w>282</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>Stage
---
-
-
---
-_+ ajouter(string id, Date dateDeb, Date dateFin, Proposition prop) : void_
-_+ supprimer(string id)_
-_+ getAll() : Stage[]_</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>576</x>
-      <y>474</y>
-      <w>300</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>Projet
---
-
-
---
-_+ ajouter(string id, Date dateDeb, Date dateFin, Proposition prop) : void_
-_+ supprimer(string id)_
-_+ getAllt() : Projet[]_</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>414</x>
-      <y>300</y>
+      <x>618</x>
+      <y>432</y>
       <w>102</w>
       <h>84</h>
     </coordinates>
@@ -226,16 +168,16 @@ _+ getAllt() : Projet[]_</panel_attributes>
 - ville : string
 --
 + get()
-+ set() ?
++ set()
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>444</x>
-      <y>474</y>
-      <w>90</w>
+      <x>372</x>
+      <y>618</y>
+      <w>138</w>
       <h>108</h>
     </coordinates>
     <panel_attributes>Responsable
@@ -251,154 +193,107 @@ _+ getAllt() : Projet[]_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>312</x>
-      <y>408</y>
-      <w>180</w>
-      <h>78</h>
+      <x>126</x>
+      <y>432</y>
+      <w>330</w>
+      <h>174</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;70.0;280.0;70.0;280.0;110.0</additional_attributes>
+    <additional_attributes>530.0;180.0;530.0;270.0;10.0;270.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>534</x>
-      <y>300</y>
+      <x>810</x>
+      <y>432</y>
       <w>90</w>
       <h>84</h>
     </coordinates>
     <panel_attributes>Entreprise
 --
 - id_ent : int
+- id_adresse : int
 - libele : string
-- adresse : Adresse
 --
 + get()
-+ set() ?
++ set()
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>390</x>
-      <y>150</y>
+      <x>594</x>
+      <y>288</y>
       <w>120</w>
-      <h>60</h>
+      <h>78</h>
     </coordinates>
     <panel_attributes>/Entity/
 --
 # _id : string
+
 --
-/+ createFromId(string id) : self/
+/_+ createFromId(string id) : self_/
+/_+ persist() : void_/
+/_+ getAll() : array_/
 + getId() : string</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>606</x>
-      <y>174</y>
-      <w>120</w>
-      <h>42</h>
+      <x>780</x>
+      <y>300</y>
+      <w>132</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>Toutes les classes relier à a BD 
 doivent hériter de cette classe
+
+Autres méthodes static à implémenté :
+- getFromForeignID (pour chaque FK)
+   ex: getFromPropositionID
 bg=black</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>612</x>
-      <y>396</y>
-      <w>108</w>
-      <h>90</h>
+      <x>456</x>
+      <y>360</y>
+      <w>210</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>160.0;10.0;160.0;90.0;10.0;90.0;10.0;130.0</additional_attributes>
+    <additional_attributes>330.0;10.0;330.0;70.0;10.0;70.0;10.0;110.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
-    <coordinates>
-      <x>702</x>
-      <y>396</y>
-      <w>456</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;90.0;740.0;90.0;740.0;130.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
     <coordinates>
       <x>648</x>
-      <y>294</y>
-      <w>270</w>
-      <h>108</h>
-    </coordinates>
-    <panel_attributes>/Travaux/
---
-- titre : string
-- proposition : Proposition
-- dateDeb : Date
-- dateFin : Date
---
-_/+ getProposition(): Proposition[]/_
-_/+ ajouter(string id, Date dateDeb, Date dateFin, Proposition prop) : void/_
-_/+ supprimer(string id) : void/_
-_/+ getAll() : Travaux[]/_</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>330</x>
-      <y>204</y>
-      <w>132</w>
-      <h>108</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>200.0;10.0;200.0;110.0;10.0;110.0;10.0;160.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>444</x>
-      <y>204</y>
+      <y>360</y>
       <w>18</w>
-      <h>108</h>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;160.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>444</x>
-      <y>204</y>
-      <w>144</w>
-      <h>108</h>
+      <x>648</x>
+      <y>360</y>
+      <w>216</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;110.0;220.0;110.0;220.0;160.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>444</x>
-      <y>204</y>
-      <w>264</w>
-      <h>102</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;110.0;420.0;110.0;420.0;150.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0;340.0;70.0;340.0;120.0</additional_attributes>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>0</x>
-      <y>264</y>
+      <x>324</x>
+      <y>168</y>
       <w>60</w>
       <h>30</h>
     </coordinates>
@@ -409,56 +304,312 @@ bg=black</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
+      <x>708</x>
+      <y>324</y>
+      <w>84</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;120.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>378</x>
+      <y>174</y>
+      <w>54</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>408</x>
+      <y>66</y>
+      <w>252</w>
+      <h>234</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>400.0;370.0;400.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
       <x>504</x>
-      <y>186</y>
-      <w>114</w>
-      <h>18</h>
+      <y>492</y>
+      <w>318</w>
+      <h>156</h>
     </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;170.0;10.0</additional_attributes>
+    <panel_attributes>lt=-&gt;
+Employer v
+m1=0..1
+m2=*</panel_attributes>
+    <additional_attributes>510.0;10.0;410.0;10.0;410.0;230.0;10.0;230.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>54</x>
-      <y>270</y>
-      <w>60</w>
-      <h>18</h>
+      <x>906</x>
+      <y>720</y>
+      <w>216</w>
+      <h>162</h>
     </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
+    <panel_attributes>lt=-&gt;
+m1=1
+m2=*
+Associer à &gt;</panel_attributes>
+    <additional_attributes>10.0;240.0;340.0;240.0;340.0;10.0</additional_attributes>
   </element>
   <element>
-    <id>Relation</id>
+    <id>UMLClass</id>
     <coordinates>
-      <x>288</x>
-      <y>84</y>
+      <x>1044</x>
+      <y>618</y>
+      <w>186</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>/Travaux/
+--
+- libele : string
+- dateDeb : Date
+- dateFin : Date
+- prof : Professeur
+--
++ get()
++ set()
+_/+ getProposition(): Proposition[]/_
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>762</x>
+      <y>636</y>
+      <w>192</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Stage
+--
+- resp : Responsable = null
+--
+_+ getFromResponsableId(int id) : Stage[]_
+_+ getFromProfesseurId(int id) : Stage[]_
+_+ getFromEntrepriseId(int id) : Stage[]_
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>774</x>
+      <y>726</y>
       <w>168</w>
-      <h>78</h>
+      <h>66</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>260.0;110.0;260.0;10.0;10.0;10.0</additional_attributes>
+    <panel_attributes>Projet
+--
+
+
+--
+_+ supprimer(string id)_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>762</x>
+      <y>816</y>
+      <w>150</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Proposition
+--
+- description : string
+- acceptee
+--
++ get()
++ getAcceptedStudent() : Etudiant
++ isAccepted() : bool
++ setAcceptee(bool acceptee)
++ getFromProjetId(int id): Proposition[]
++ getFromPStageId(int id): Proposition[]</panel_attributes>
+    <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>198</x>
-      <y>204</y>
-      <w>264</w>
-      <h>78</h>
+      <x>948</x>
+      <y>654</y>
+      <w>108</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>420.0;10.0;420.0;110.0;10.0;110.0</additional_attributes>
+    <additional_attributes>160.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>444</x>
-      <y>204</y>
-      <w>546</w>
-      <h>102</h>
+      <x>936</x>
+      <y>654</y>
+      <w>120</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;110.0;890.0;110.0;890.0;150.0</additional_attributes>
+    <additional_attributes>180.0;10.0;90.0;10.0;90.0;180.0;10.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>714</x>
+      <y>456</y>
+      <w>108</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m1=1
+m2=*
+&lt; Situer à</panel_attributes>
+    <additional_attributes>10.0;20.0;160.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>516</x>
+      <y>462</y>
+      <w>114</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m1=*
+m2=*
+Avoir &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>846</x>
+      <y>510</y>
+      <w>54</w>
+      <h>138</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+Héberger v
+m1=0..1
+m2=*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>666</y>
+      <w>270</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=-
+Encadrer &gt;
+m1=0..1
+m2=*</panel_attributes>
+    <additional_attributes>10.0;20.0;430.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>78</x>
+      <y>432</y>
+      <w>1086</w>
+      <h>522</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+Faire proposition &gt;
+m1=0..1
+m2=*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;850.0;1790.0;850.0;1790.0;490.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>270</x>
+      <y>534</y>
+      <w>504</w>
+      <h>354</h>
+    </coordinates>
+    <panel_attributes>lt=-
+Candidater &gt;
+m1=*
+m2=*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;560.0;820.0;560.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>312</x>
+      <y>234</y>
+      <w>120</w>
+      <h>204</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+Posséder ^
+m1=1
+m2=*</panel_attributes>
+    <additional_attributes>10.0;320.0;10.0;10.0;180.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>564</x>
+      <y>192</y>
+      <w>96</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>140.0;160.0;140.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>120</y>
+      <w>72</w>
+      <h>288</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+Enseigner ^
+m1=0..1
+m2=*</panel_attributes>
+    <additional_attributes>10.0;450.0;100.0;450.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>258</x>
+      <y>120</y>
+      <w>48</w>
+      <h>318</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+Inscrire ^
+m1=0..1
+m2=*</panel_attributes>
+    <additional_attributes>10.0;510.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>732</x>
+      <y>90</y>
+      <w>156</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>Pour toutes les classes :
+get() =&gt; accesseurs pour les attributs privés
+set() =&gt; modificateurs pour les attributs privés
+bg=black</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>

@@ -1,20 +1,75 @@
 <?php
+require_once 'autoload.inc.php';
 
 abstract class Travaux extends Entity
 {
-    protected $titre; //string
     /**
-     * @var Proposition[] | NULL
+     * @var string
      */
-    protected $proposition;
+    protected $libele; //string
+    /**
+     * @var Proposition[] | null
+     */
+    protected $propositions = null;
+    /**
+     * @var DatePeriod
+     */
     protected $dateDeb; //date
+    /**
+     * @var DatePeriod
+     */
     protected $dateFin; //date
 
-    //fonctions
-
-    public function getTitre(): string
+    /**
+     * @var Professeur | null
+     */
+    protected $professeur = null;
+    /**
+     * @var int $idProfesseur
+     */
+    protected $idProfesseur;
+    /**
+     *  Constructeur non accessible.
+     * @noinspection PhpMissingParentConstructorInspection
+     *
+     */
+    private function __construct()
     {
-        return $this->titre;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdProfesseur(): int
+    {
+        return (int) $this->idProfesseur;
+    }
+
+    /**
+     * @return Professeur|null
+     * @throws Exception
+     */
+    public function getProfesseur(): ?Professeur
+    {
+        if ($this->professeur === null)
+        {
+            $this->professeur = Professeur::createFromId($this->idProfesseur);
+        }
+        return $this->professeur;
+    }
+
+    /**
+     * @param int $id
+     * @return self[]
+     */
+    abstract public static function getFromProfesseurId(int $id) : array;
+
+    /**
+     * @param Professeur|null $professeur
+     */
+    public function setProfesseur(?Professeur $professeur): void
+    {
+        $this->professeur = $professeur;
     }
 
     /**
@@ -23,6 +78,15 @@ abstract class Travaux extends Entity
     public function getDateFin()
     {
         return $this->dateFin;
+    }
+
+
+    /**
+     * @param DatePeriod $dateFin
+     */
+    public function setDateFin(DatePeriod $dateFin): void
+    {
+        $this->dateFin = $dateFin;
     }
 
     /**
@@ -34,32 +98,32 @@ abstract class Travaux extends Entity
     }
 
     /**
-     * @param mixed $proposition
+     * @param DatePeriod $dateDeb
      */
-    public function setProposition($proposition): void
+    public function setDateDeb(DatePeriod $dateDeb): void
     {
-        $this->proposition = $proposition;
+        $this->dateDeb = $dateDeb;
+    }
+    public function getLibele(): string
+    {
+        return $this->libele;
+    }
+
+    /**
+     * @param string $libele
+     */
+    public function setLibele(string $libele): void
+    {
+        $this->libele = $libele;
     }
 
     /**
      * @return Proposition[]
+     * @throws Exception
      */
-    abstract public function getProposition(): array;
+    abstract public function getPropositions(): array;
 
-    /**
-     * @return self[]
-     */
-    abstract public function getAll(): array;
 
-    /**
-     * Ajoute une ligne dans la table de stage | projet avec la proposition associer.
-     *
-     * @param string $dateDeb
-     * @param string $dateFin
-     * @param string $description
-     * @return bool selon la réussite de l'action
-     */
-    abstract public function ajouter(string $dateDeb, string $dateFin, string $description): bool;
 
     /*
      * doute sur la nécessité de cette méthode

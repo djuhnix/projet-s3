@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!--
+Ce header est à integrer dans toutes les pages php en vefifant de bien supprimer le header déja present sur les versions html qui ne sont là que pour le rendu
+-->
+<html dir="ltr" lang="fr" xml:lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Université de Reims Champagne-Ardenne: fiche perso</title>
+    <!-- font awesome  -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <!-- Theme style  -->
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/note.css">
+    <script type="text/javascript" src="../js/noteForm.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<div>
+    <!--Header commun à toutes les pages-->
+    <header class="topbar">
+        <img src="../images/logo_urca.png" class="center image">
+    </header>
+    <!--NavBar-->
+    <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" style="text-transform: uppercase;"> Master Info</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Notes</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Deconnexion</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+</body>
+<h1>
+    ZERMANI RAYAN
+</h1>
+<body>
+   <div class="container">
+     <h1>Envoyer Notes</h1>
+     <nav class="navbar justify-content-center">
+      <form action="/ma-page-de-traitement" method="post">
+         <div>
+            <div>
+               <label for="name">Nom du module:             </label>
+            </div>
+             <div class="">
+                <input type="text" id="name" name="module" required>
+             </div>
+
+            <div>
+               <div>
+                  <label for="text">Identifiant :</label>
+               </div>
+               <div class="">
+                  <input type="text" id="id" name="nom" required>
+               </div>
+            </div>
+            <div>
+               <div>
+                  <label for="name">Note CC:</label>
+               </div>
+               <div class="">
+                  <input type="text" name="noteCc" onblur="verifNote(this)" required>
+               </div>
+               <div>
+                  <label for="name">Note TP :</label>
+               </div>
+               <div class="">
+                  <input type="text" name="noteTp" onblur="verifNote(this)" required>
+               </div>
+            </div>
+            <div class="">
+               <button type="submit" name="envoie">Envoyer !
+               </button>
+            </div>
+         </div>
+     </form>
+    </nav>
+   </div>
+
+   <!-- jQuery  -->
+   <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+            crossorigin="anonymous"></script>
+
+   <!-- Webshim: polyfill enabling the use of HTML5 features across browsers -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/webshim/1.16.0/dev/polyfiller.js">
+   </script>
+   <script>
+     //request the features you need:
+     webshim.polyfill("es5 mediaelement forms");
+   </script>
+
+ </body>
+</html>

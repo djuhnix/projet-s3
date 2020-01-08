@@ -1,0 +1,28 @@
+table {
+    font-family: sans-serif;
+    border-collapse: collapse;
+}
+
+th {
+    border-bottom: 3px solid black;
+    text-align: left;
+    font-weight: bold;
+    font-variant: small-caps;
+    padding-right: 30px;
+}
+
+td {
+    border-bottom: 1px solid lightgray;
+    text-align: left;
+    padding-right: 30px;
+}
+h1{
+    text-align: center;
+}
+tbody{
+    text-align: center;
+    padding-right: 30px;
+}
+naturalnumbers{
+    background-color: gray();
+}

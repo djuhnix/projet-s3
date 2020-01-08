@@ -1,5 +1,3 @@
-
-
 <?php
 
 /**
@@ -43,4 +41,20 @@ abstract class Entity
      * @return self instance correspondant à $id
      */
     abstract public static function createFromId(int $id);
+
+    /**
+     * Accesseur à toutes les lignes de la table correspondantes.
+     * A utilisé avec précaution.
+     * @return self[]
+     * @throws Exception
+     */
+    abstract protected static function getAll() : array;
+
+    /**
+     * Fait persister une instance dans la base de données avec ses attribut.
+     * @return bool Selon la réussite de l'action
+     * @throws Exception
+     */
+    abstract public function persist() : bool;
+
 }
