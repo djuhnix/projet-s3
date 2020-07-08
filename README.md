@@ -40,34 +40,3 @@ et de façon générale) comme en gestion de projet, ce qui me permettra d'appre
 de mes erreurs mais surtout en développement web globalement. En somme
 le projet m'aura apporté beaucoup plus de connaissances que je n'aurai
 espéré malgré le fait qu'il ne soit pas complètement terminé.
-
-- **Ressenti de Maxime**
-
-Pour ma part, tout mon projet a été focus sur la partie stage, sans
-oublier le côté analyse (mais je considère ceci comme un travail
- collectif, où tout le monde a eu la même idée par chaque analyse).
- J'en ai grandement appris à faire plusieurs choses que moi-même je ne
- pensais pas être capable de faire. J'ai eu des facilités concernant
- l'exécution de la mise en page des différentes parties. Le problème
- majeur a été la bd et la mise en place des différentes instructions
- pour la récupération des informations des formulaires.
-
-- **Ressenti de Sébastien**
-
-La première partie de mon travail fut de réaliser la structure du site,
-c’est-à-dire de penser aux pages à créer et à la navigabilité entre celles-ci.
-Puis, une fois cela fait j’ai du réaliser la partie HTML de la page de
-connexion ainsi que les différentes pages d’accueil des utilisateurs.
-Le plus compliqué a été de rendre les pages responsives tout en gardant
-une structure apte à recevoir les données nécessaires à un bon affichage.
-Cela fut assez difficile au début mais après mettre documenté cela devint
-de plus en plus facile et rapide. Les autres membres du projet m’ont
-aussi beaucoup aidé pour le choix du design au fur et à mesure de
-l’avancement et de la mise en place des pages. Une fois cette partie
-finie j’ai dû réaliser plusieurs classes php ce qui s’avéra beaucoup
-plus compliqué puisque je ne suis, à la base pas très alèse avec la
-conception objet. Cependant, cela m’a permis de m’améliorer dans ce
-domaine. Le projet s’est globalement bien passé même si Stan et Germain
-ayant des manières de faire très différentes pouvaient avoir des petites
-disputes créant des tensions au seins du groupe. Cependant, cela m'a
-permis d'apprendre à travailler dans un nouveau contexte.
