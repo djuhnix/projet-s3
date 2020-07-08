@@ -5,15 +5,15 @@
 Développer un site web de gestion de stages et de projets pour la formation
 master en intelligence artificielle de l'URCA.
 
-### Rapport de programmation :
+### Rapport de programmation
 
 #### Retour à l'analyse
 
 
 
-## Gestion de projet :
+## Gestion de projet
 
-### Bilan :
+### Bilan
 
 - **Ressenti de Germain**
 
